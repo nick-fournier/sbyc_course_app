@@ -2,60 +2,73 @@
 	"SC1":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"T1":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"RC Boat":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"NAS1":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"NAS2":
 	{
 		"LAT": 0,
-		"LON": 0},
+		"LON": 0,
+		"precision": 0
+	},
 	"YB":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"W":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"R":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"G1":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"G2":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"AS1":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	},
 	"34":
 	{
 		"LAT": 0,
-		"LON": 0
+		"LON": 0,
+		"precision": 0
 	}
 }

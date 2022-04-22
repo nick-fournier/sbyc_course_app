@@ -18,7 +18,7 @@ class CourseMetaData(models.Model):
     # Calculate this on initialization
     #distance = models.DecimalField(max_digits=12, decimal_places=4, default=None, null=True)
 
-class Courses(models.Model):
+class CourseMarkOrder(models.Model):
     course = models.ForeignKey(CourseMetaData, on_delete=models.CASCADE)
     mark = models.ForeignKey(Marks, on_delete=models.CASCADE)
     rounding_direction = models.CharField(max_length=1)

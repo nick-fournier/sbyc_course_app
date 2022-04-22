@@ -171,56 +171,56 @@
 		"course_number": 15,
 		"marks":
 		{
-			1: {"mark": "START", "rounding": null},
-			2: {"mark": "W", "rounding": "Port"},
-			3: {"mark": "R","rounding": "Port"},			
-			4: {"mark": "NAS1/NAS2","rounding": "Port"},
-			5: {"mark": "W", "rounding": "Port"},
-			6: {"mark": "R","rounding": "Port"},
-			7: {"mark": "NAS1/NAS2","rounding": "Port"},
-			8: {"mark": "FINISH", "rounding": null}
+			"START": {"order": 1, "rounding": null},
+			"W": {"order": 2, "rounding": "Port"},
+			"R": {"order": 3,"rounding": "Port"},			
+			"NAS1/NAS2": {"order": 4,"rounding": "Port"},
+			"W": {"order": 5, "rounding": "Port"},
+			"R": {"order": 6, "rounding": "Port"},
+			"NAS1/NAS2": {"order": 7,"rounding": "Port"},
+			"FINISH": {"order": 8, "rounding": null}
 		}
 	},
 	{
 		"course_number": 16,
-		"order":
+		"marks":
 		{
-			1: {"mark": "START", "rounding": null},
-			2: {"mark": "W", "rounding": "Port"},
-			3: {"mark": "R","rounding": "Port"},		
-			4: {"mark": "Gate G","rounding": "Port"},
-			5: {"mark": "FINISH", "rounding": null}
+			"START": {"order": 1, "rounding": null},
+			"W": {"order": 2, "rounding": "Port"},
+			"R": {"order": 3, "rounding": "Port"},		
+			"Gate G": {"order": 4, "rounding": "Port"},
+			"FINISH": {"order": 5, "rounding": null}
 		}
 	},
 	{
 		"course_number": 17,
-		"order":
+		"marks":
 		{
-			1: {"mark": "START", "rounding": null},
-			2: {"mark": "W", "rounding": "Port"},
-			3: {"mark": "R","rounding": "Port"},
-			4: {"mark": "Gate G","rounding": "Port"},
-			5: {"mark": "W", "rounding": "Port"},
-			6: {"mark": "R","rounding": "Port"},
-			7: {"mark": "Gate G","rounding": "Port"},
-			8: {"mark": "FINISH", "rounding": null}
+			"START": {"order": 1, "rounding": null},
+			"W": {"order": 2, "rounding": "Port"},
+			"R": {"order": 3, "rounding": "Port"},
+			"Gate G": {"order": 4, "rounding": "Port"},
+			"W": {"order": 5, "rounding": "Port"},
+			"R": {"order": 6, "rounding": "Port"},
+			"Gate G": {"order": 7, "rounding": "Port"},
+			"FINISH": {"order": 8, "rounding": null}
 		}
 	},
 	{
 		"course_number": 19,
-		"order":
+		"marks":
 		{
-			1: {"mark": "START", "rounding": null},
-			2: {"mark": "W", "rounding": "Port"},
-			3: {"mark": "R","rounding": "Port"},
-			4: {"mark": "Gate G","rounding": "Port"},
-			5: {"mark": "W", "rounding": "Port"},
-			6: {"mark": "R","rounding": "Port"},
-			7: {"mark": "Gate G","rounding": "Port"},
-			5: {"mark": "W", "rounding": "Port"},
-			6: {"mark": "R","rounding": "Port"},
-			7: {"mark": "Gate G","rounding": "Port"},
-			8: {"mark": "FINISH", "rounding": null}
+			"START", "rounding": null},
+			"W", "rounding": "Port"},
+			"R","rounding": "Port"},
+			"Gate G","rounding": "Port"},
+			"W", "rounding": "Port"},
+			"R","rounding": "Port"},
+			"Gate G","rounding": "Port"},
+			"W", "rounding": "Port"},
+			"R","rounding": "Port"},
+			"Gate G","rounding": "Port"},
+			"FINISH", "rounding": null}
 		}
 	}
 ]

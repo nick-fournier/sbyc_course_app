@@ -1,74 +1,74 @@
 {
 	"SC1":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 46.534 -122 21.949",
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"T1":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": null,
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"RC Boat":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": null,
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"NAS1":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 46.533 -122 21.949",
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"NAS2":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 46.451 -122 20.461",
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"YB":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 47.971 -122 21.631",
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"W":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 48.804 -122 22.966",
+		"precision": {"value": 20, "units": "meter"}
 	},
 	"R":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 46.664 -122 22.934",
+		"precision": {"value": 20, "units": "meter"}
 	},
-	"G1":
+	"Gate G 1":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": null,
+		"precision": {"value": 0, "units": "meter"}
 	},
-	"G2":
+	"Gate G 2":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": null,
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"AS1":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 46.282 -122 22.981",
+		"precision": {"value": 0, "units": "meter"}
 	},
 	"34":
 	{
-		"LAT": 0,
-		"LON": 0,
-		"precision": 0
+		"format": "dd mm.mmm",
+		"coord_string": "37 45.535 -122 22.058",
+		"precision": {"value": 0, "units": "meter"}
 	}
 }

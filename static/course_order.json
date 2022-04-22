@@ -181,5 +181,47 @@
 			7: {"mark": "NAS1/NAS2","rounding": "Port"},
 			8: {"mark": "FINISH", "rounding": null}
 		}
+	},
+	{
+		"course_number": 16,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},		
+			4: {"mark": "Gate G","rounding": "Port"},
+			5: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 17,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},
+			4: {"mark": "Gate G","rounding": "Port"},
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "Gate G","rounding": "Port"},
+			8: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 19,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},
+			4: {"mark": "Gate G","rounding": "Port"},
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "Gate G","rounding": "Port"},
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "Gate G","rounding": "Port"},
+			8: {"mark": "FINISH", "rounding": null}
+		}
 	}
 ]

@@ -1,9 +1,11 @@
----
-- name: SC1
-  format: dd mm.mmm
-  coord_string: 37 46.534 -122 21.949
-  precision_value: 0
-  precision_units: meter
+---    
+- model: course_maps.marks
+  name: SC1
+  fields:
+      format: dd mm.mmm
+      coord_string: 37 46.534 -122 21.949
+      precision_value: 0
+      precision_units: meter
 
 - name: T1
   format: dd mm.mmm

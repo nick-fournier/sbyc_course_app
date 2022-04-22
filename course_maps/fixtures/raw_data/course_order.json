@@ -1,13 +1,12 @@
 [
 	{
 		"course_number": 1,
-		"order":
-		{
-			1: {"mark": "START", "rounding": null},
-			2: {"mark": "AS1","rounding": "Port"},
-			3: {"mark": "34", "rounding": "Port"},
-			4: {"mark": "SC1", "rounding": "Port"},
-			5: {"mark": "FINISH", "rounding": null}
+		"marks": {
+		      "START": {"order": 1, "rounding": null},
+			2: {"order": 2, "mark": "AS1","rounding": "Port"},
+			3: {"order": 3, "mark": "34", "rounding": "Port"},
+			4: {"order": 4, "mark": "SC1", "rounding": "Port"},
+			5: {"order": 5, "mark": "FINISH", "rounding": null}
 		}
 	},
 	{

@@ -86,7 +86,8 @@
 			1: {"mark": "START", "rounding": null},
 			2: {"mark": "W", "rounding": "Port"},
 			3: {"mark": "R","rounding": "Port"},
-			4: {"mark": "FINISH", "rounding": null}
+			4: {"mark": "YB","rounding": "Port"},
+			5: {"mark": "FINISH", "rounding": null}
 		}
 	},
 	{
@@ -109,9 +110,76 @@
 			2: {"mark": "W", "rounding": "Port"},
 			3: {"mark": "R","rounding": "Port"},
 			4: {"mark": "NAS1/NAS2","rounding": "Gate"},
+			5: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 11,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},
+			4: {"mark": "NAS1/NAS2","rounding": "Gate"},
 			5: {"mark": "AS1","rounding": "Port"},
 			6: {"mark": "SC1","rounding": "Port"},
 			7: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 12,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},
+			4: {"mark": "SC1","rounding": "Port"},
+			5: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 13,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},			
+			4: {"mark": "SC1","rounding": "Port"},			
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "SC1","rounding": "Port"},
+			8: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 14,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},			
+			4: {"mark": "SC1","rounding": "Port"},
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "SC1","rounding": "Port"},
+			8: {"mark": "W", "rounding": "Port"},
+			9: {"mark": "R","rounding": "Port"},
+			10: {"mark": "SC1","rounding": "Port"},
+			11: {"mark": "FINISH", "rounding": null}
+		}
+	},
+	{
+		"course_number": 15,
+		"order":
+		{
+			1: {"mark": "START", "rounding": null},
+			2: {"mark": "W", "rounding": "Port"},
+			3: {"mark": "R","rounding": "Port"},			
+			4: {"mark": "NAS1/NAS2","rounding": "Port"},
+			5: {"mark": "W", "rounding": "Port"},
+			6: {"mark": "R","rounding": "Port"},
+			7: {"mark": "NAS1/NAS2","rounding": "Port"},
+			8: {"mark": "FINISH", "rounding": null}
 		}
 	}
 ]

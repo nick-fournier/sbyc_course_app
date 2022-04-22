@@ -1,0 +1,126 @@
+[
+	{
+		"course_number": 1,
+		"order": ["START", "AS1", "34", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			5: null
+		}
+	},
+	{
+		"course_number": 2,
+		"order": ["START", "AS1", "34", "SC1", "34", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			5: "Port",
+			6: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 3,
+		"order": ["START", "AS1", "34", "SC1", "AS1", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			5: "Port",
+			6: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 4,
+		"order": ["START", "AS1", "34", "NAS1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			5: null
+		}
+	},
+	{
+		"course_number": 5,
+		"order": ["START", "AS1", "NAS1/NAS2", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Gate",
+			4: null
+		}
+	},
+	{
+		"course_number": 6,
+		"order": ["START", "AS1", "SC1", "AS1", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			4: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 7,
+		"order": ["START", "AS1", "YB", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 8,
+		"order": ["START", "W", "R", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 9,
+		"order": ["START", "W", "R", "YB", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			4: "Port",
+			7: null
+		}
+	},
+	{
+		"course_number": 10,
+		"order": ["START", "W", "R", "NAS1/NAS2", "AS1", "SC1", "FINISH"],
+		"rounding":
+		{
+			1: null,
+			2: "Port",
+			3: "Port",
+			4: "Port",
+			4: "Port",
+			7: null
+		}
+	}
+]

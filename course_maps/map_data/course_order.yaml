@@ -2,386 +2,386 @@
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: '34'
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 2
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: '34'
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: '34'
-      rounding: Port
+      rounding: port
     - order: 6
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 7
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 3
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: '34'
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 6
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 7
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 4
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: '34'
-      rounding: Port
+      rounding: port
     - order: 4
       mark: NAS1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 5
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: NAS1/NAS2
       rounding: Gate
     - order: 4
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 6
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 4
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 6
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 7
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 3
       mark: YB
-      rounding: Port
+      rounding: port
     - order: 4
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 8
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: YB
-      rounding: Port
+      rounding: port
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 9
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: YB
-      rounding: Port
+      rounding: port
     - order: 5
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 6
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 10
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: NAS1/NAS2
       rounding: Gate
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 11
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: NAS1/NAS2
       rounding: Gate
     - order: 5
       mark: AS1
-      rounding: Port
+      rounding: port
     - order: 6
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 7
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 12
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 13
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 8
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 14
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 8
       mark: W
-      rounding: Port
+      rounding: port
     - order: 9
       mark: R
-      rounding: Port
+      rounding: port
     - order: 10
       mark: SC1
-      rounding: Port
+      rounding: port
     - order: 11
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 15
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: NAS1/NAS2
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: NAS1/NAS2
-      rounding: Port
+      rounding: port
     - order: 8
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 16
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 5
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 17
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 8
       mark: FINISH
-      rounding: null
+      rounding: gate
 - course_number: 19
   marks:
     - order: 1
       mark: START
-      rounding: null
+      rounding: gate
     - order: 2
       mark: W
-      rounding: Port
+      rounding: port
     - order: 3
       mark: R
-      rounding: Port
+      rounding: port
     - order: 4
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 5
       mark: W
-      rounding: Port
+      rounding: port
     - order: 6
       mark: R
-      rounding: Port
+      rounding: port
     - order: 7
       mark: Gate G
-      rounding: Port
+      rounding: port
     - order: 8
       mark: FINISH
-      rounding: null
+      rounding: gate

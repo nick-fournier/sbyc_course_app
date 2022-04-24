@@ -26,7 +26,7 @@
     - NAS2
 - name: YB
   description: >-
-    Yerba Buena is a Red buoy “2” Fl R 2.5s approx. 0.5 nm South of Yerba Buena
+    Yerba Buena is a Red buoy \"2\" Fl R 2.5s approx. 0.5 nm South of Yerba Buena
     Light House
   type: mark
   points:
@@ -51,18 +51,13 @@
     - G1
     - G2
 - name: AS1
-  description: 'Yellow mark, approx. 0.25 nm East of BVBC'
+  description: Yellow mark, approx. 0.25 nm East of BVBC
   type: mark
   points:
     - YB
-- name: '34'
-  description: 'Red buoy “2” FL R 2.0s, approx. 0.5 nm east of Potrero Point'
-  type: mark
-  points:
-    - '34'
 - name: SC1
   description: >-
-    SC1 is a green & red buoy, “SC” FL G(2+1), approx. 1.0 nm ENE of Mission
+    SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission
     Rock Terminal
   type: mark
   points:

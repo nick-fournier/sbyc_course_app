@@ -1,0 +1,5 @@
+data_dir: map_data
+course_data:
+  marks: course_marks.csv
+  objects: course_objects.yaml
+  order: course_order.yaml

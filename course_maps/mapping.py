@@ -1,11 +1,12 @@
-import numpy as np
+import copy
 import yaml
 import os
 import json
 import folium
-import math
+import haversine as hs
 import pandas as pd
 import numpy as np
+
 
 def coord_to_latlon(string):
     if not isinstance(string, str):
@@ -17,9 +18,28 @@ def coord_to_latlon(string):
 
     return pd.Series([lat, lon])
 
+
+def coord_mean(coord_df):
+    if not all(coord_df.dtypes == [float, float]):
+        coord_df = coord_df.apply(coord_to_latlon)
+
+    return tuple(coord_df.sum() / len(coord_df.dropna()))
+
+
+def coord_diff(coord_df, units=hs.Unit.METERS):
+    # Distance from center point
+    center = coord_mean(coord_df)
+
+    if not all(coord_df.dtypes == [float, float]):
+        coord_df = coord_df.apply(coord_to_latlon)
+
+    return coord_df.apply(lambda x: hs.haversine(center, tuple(x), unit=units), axis=1).max()
+
+
 class CourseData:
     def __init__(self):
         self.settings_file = "settings.yaml"
+        self.marks = self.objects = self.order = None
         self.load_course_data()
 
     def load_course_data(self):
@@ -46,36 +66,56 @@ class CourseData:
                 data = {x.pop('name'): x for x in data}
 
             if key == 'order':
-                data = {str(x.pop('course_number')): x for x in data}
+                data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
+                for k, v in data.items():
+                    v.index = v['name']
 
             setattr(self, key, data)
 
-
-
     def plot_course(self, course_number):
         # Map center point
-        center = list(self.marks[['lat', 'lon']].sum() / len(self.marks.dropna()))
+        center = coord_mean(self.marks[['lat', 'lon']])
 
         # Plot map and marks
         m = folium.Map(location=center)
 
         points = []
-        for p in self.order[str(course_number)]['marks']:
+        for index, course_object in self.order[str(course_number)].iterrows():
+            if course_object.rounding.upper() == 'GATE':
+                object_marks = self.objects[course_object.name]['points']
+                object_coords = self.marks.loc[object_marks]
+                object_center = coord_mean(object_coords[['lat', 'lon']])
 
-            if p['rounding'] == 'gate':
-                object_marks = self.objects[p['mark']]['points']
+                # Effective mark location (center)
+                mark = course_object
+                mark['precision_value'] = 40  # coord_diff(object_coords, units=hs.Unit.METERS)
 
-                self.marks.loc[object_marks]
+                mark['latlon'] = object_center
+                for k, v in iter(zip(['lat', 'lon'], object_center)):
+                    mark[k] = v
+
+                # Plot gate segment
+                for name, gate_point in object_coords.iterrows():
+                    folium.Circle(
+                        radius=gate_point.precision_value,
+                        location=(gate_point.lat, gate_point.lon),
+                        popup=name,
+                        color="blue",
+                        fill=False,
+                    ).add_to(m)
+
+                gate_points = object_coords[['lat', 'lon']].to_numpy().tolist()
+                folium.PolyLine(gate_points, color="red", weight=2.5, opacity=1).add_to(m)
 
             else:
-                mark = self.marks.loc[object['mark']]
+                mark = copy.deepcopy(self.marks.loc[course_object.name])
+                mark['latlon'] = self.marks.loc[course_object.name][['lat', 'lon']].to_list()
 
-            coord = tuple(self.marks.loc[object['mark']][['lat', 'lon']])
-            points.append(coord)
+            points.append(mark[['lat', 'lon']].to_list())
 
             folium.Circle(
-                radius=mark.precision_value,
-                location=coord,
+                radius=int(mark.precision_value),
+                location=mark.latlon,
                 popup=mark.name,
                 color="crimson",
                 fill=False,
@@ -90,4 +130,4 @@ class CourseData:
 if __name__ == "__main__":
     os.chdir('course_maps')
     self = CourseData()
-    self.plot_course()
+    self.plot_course(11)

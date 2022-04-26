@@ -3,24 +3,24 @@
     The starting line will be between a staff displaying an orange flag on the 
     RC boat and a temporary orange mark called T1. In the absence of T1, SC1
     will be the start line pin.
-  mark_type: gate
+  mark_type: GATE
   points:
     - SC1
     - T1
-    - RC Boat
+    - RC BOAT
 - name: FINISH
   description: >-
     Finish line between the eastern corner of Pier 48 and Green channel marker
     FL G 2.5s"PA"
-  type: gate
+  type: GATE
   points:
-    - Pier 48
+    - PIER 48
     - PA
 - name: NAS1/NAS2
   description: >-
     NAS1 Alameda Channel Mark "G1" FL G 4s Bell round to PORT or NAS2 Alameda
     Channel Mark "R2" Fl R 4s round to STARBOARD
-  type: gate
+  type: GATE
   points:
     - NAS1
     - NAS2
@@ -40,25 +40,25 @@
   points:
     - W
     - R
-- name: Gate G
+- name: GATE G
   description: >-
-    Two Inflatable 8 ft. orange cones set as a leeward gate set in the vicinity
+    Two Inflatable 8 ft. orange cones set as a leeward GATE set in the vicinity
     upwind of the starting area. Enter between the two marks in the direction
     from the previous mark and round either the left mark to port or the right
     mark to starboard.
-  type: gate
+  type: GATE
   points:
     - G1
     - G2
 - name: AS1
   description: Yellow mark, approx. 0.25 nm East of BVBC
-  type: mark
+  type: MARK
   points:
     - YB
 - name: SC1
   description: >-
     SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission
     Rock Terminal
-  type: mark
+  type: MARK
   points:
     - SC1

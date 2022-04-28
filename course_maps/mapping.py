@@ -36,149 +36,13 @@ def coord_diff(coord_df, units=hs.Unit.METERS):
     return coord_df.apply(lambda x: hs.haversine(center, tuple(x), unit=units), axis=1).max()
 
 
-### Function Based
-def load_course_data(settings_file = "settings.yaml"):
-    settings = yaml.load(open(settings_file), Loader=yaml.FullLoader)
-
-    course_data = {}
-    for key, file in settings['course_data'].items():
-        fpath = os.path.join(settings['data_dir'], file)
-
-        if '.csv' in file:
-            data = pd.read_csv(fpath)
-
-        with open(fpath) as f:
-            if '.yaml' in file:
-                data = yaml.load(f, Loader=yaml.FullLoader)
-            if '.json' in file:
-                data = json.load(f)
-
-        # Data formatting
-        if key == 'marks' and isinstance(data, pd.DataFrame):
-            data[['lat', 'lon']] = data.coord_string.apply(coord_to_latlon)
-            data.index = data['name']
-
-        if key == 'objects':
-            data = {x.pop('name'): x for x in data}
-
-        if key == 'order':
-            data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
-            for k, v in data.items():
-                v.index = v['name']
-
-        course_data[key] = data
-
-    return course_data
-
-
-def plot_course(course_number, pin='T1', rounding='STARBOARD', **custom_coords):
-    # Map center point
-    center = coord_mean(self.marks[['lat', 'lon']])
-    # Plot map and marks
-    m = folium.Map(location=center, zoom_start=14)
-
-    points = []
-    for index, course_object in self.order[str(self.course_number)].iterrows():
-        if course_object.rounding != None and course_object.rounding.upper() == 'GATE':
-            object_marks = self.objects[course_object.name]['points']
-            object_coords = self.marks.loc[object_marks]
-
-            # If START, select which pin
-            if course_object.name == 'START':
-                object_coords = object_coords.loc[['RC BOAT', pin]]
-                # Update any custom coordinates
-                for cc in custom_coords:
-                    object_coords.loc[cc, ['lat', 'lon']] = custom_coords[cc]
-
-            # Get effective center from remaining points (if there were more than 2)
-            object_center = coord_mean(object_coords[['lat', 'lon']])
-
-            # Effective mark location (center)
-            mark = course_object
-            mark['precision_value'] = 40  # coord_diff(object_coords, units=hs.Unit.METERS)
-
-            mark['latlon'] = object_center
-            for k, v in iter(zip(['lat', 'lon'], object_center)):
-                mark[k] = v
-
-            # Plot gate segment
-            for name, gate_point in object_coords.iterrows():
-                folium.Circle(
-                    radius=gate_point.precision_value,
-                    location=(gate_point.lat, gate_point.lon),
-                    popup=name,
-                    color="blue",
-                    fill=False,
-                ).add_to(m)
-
-            gate_points = object_coords[['lat', 'lon']].to_numpy().tolist()
-            folium.PolyLine(gate_points, color="blue", weight=2.5, opacity=1).add_to(m)
-
-        else:
-            # If starboard rounding, swap W and R
-            if course_object.name in ['W', 'R'] and rounding.upper() == 'STARBOARD':
-                windward = {'W': 'R', 'R': 'W'}[course_object.name]
-                mark = copy.deepcopy(self.marks.loc[windward])
-                mark.name = course_object.name
-            else:
-                mark = copy.deepcopy(self.marks.loc[course_object.name])
-
-        points.append(mark[['lat', 'lon']].to_list())
-
-        folium.Circle(
-            radius=int(mark.precision_value),
-            location=mark[['lat', 'lon']].to_list(),
-            popup=mark.name,
-            color="crimson",
-            fill=False,
-        ).add_to(m)
-
-    # Plot map waypoint segments
-    folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(m)
-
-    # m.save('templates/test_map.html')
-    return m
-
-
-
-### Class-based
 class CourseData:
-    def __init__(self, course_number):
-        print(os.listdir())
+    def __init__(self, course_number, static=True):
         self.settings_file = "course_maps/settings.yaml"
         self.marks = self.objects = self.order = None
-        self.load_course_data()
         self.course_number = course_number
-
-    def load_course_data(self):
-        settings = yaml.load(open(self.settings_file), Loader=yaml.FullLoader)
-
-        for key, file in settings['course_data'].items():
-            fpath = os.path.join(settings['data_dir'], file)
-
-            if '.csv' in file:
-                data = pd.read_csv(fpath)
-
-            with open(fpath) as f:
-                if '.yaml' in file:
-                    data = yaml.load(f, Loader=yaml.FullLoader)
-                if '.json' in file:
-                    data = json.load(f)
-
-            # Data formatting
-            if key == 'marks' and isinstance(data, pd.DataFrame):
-                data[['lat', 'lon']] = data.coord_string.apply(coord_to_latlon)
-                data.index = data['name']
-
-            if key == 'objects':
-                data = {x.pop('name'): x for x in data}
-
-            if key == 'order':
-                data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
-                for k, v in data.items():
-                    v.index = v['name']
-
-            setattr(self, key, data)
+        if static:
+            self.load_static_data()
 
     def plot_course(self, pin='T1', rounding='STARBOARD', **custom_coords):
         # Map center point
@@ -188,7 +52,7 @@ class CourseData:
 
         points = []
         for index, course_object in self.order[str(self.course_number)].iterrows():
-            if course_object.rounding != None and course_object.rounding.upper() == 'GATE':
+            if course_object.rounding is not None and course_object.rounding.upper() == 'GATE':
                 object_marks = self.objects[course_object.name]['points']
                 object_coords = self.marks.loc[object_marks]
 
@@ -248,10 +112,40 @@ class CourseData:
         # m.save('templates/test_map.html')
         return m
 
+    def load_static_data(self):
+        settings = yaml.load(open(self.settings_file), Loader=yaml.FullLoader)
+
+        for key, file in settings['course_data'].items():
+            fpath = os.path.join(settings['data_dir'], file)
+
+            if '.csv' in file:
+                data = pd.read_csv(fpath)
+
+            with open(fpath) as f:
+                if '.yaml' in file:
+                    data = yaml.load(f, Loader=yaml.FullLoader)
+                if '.json' in file:
+                    data = json.load(f)
+
+            # Data formatting
+            if key == 'marks' and isinstance(data, pd.DataFrame):
+                data[['lat', 'lon']] = data.coord_string.apply(coord_to_latlon)
+                data.index = data['name']
+
+            if key == 'objects':
+                data = {x.pop('name'): x for x in data}
+
+            if key == 'order':
+                data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
+                for k, v in data.items():
+                    v.index = v['name']
+
+            setattr(self, key, data)
+
 
 if __name__ == "__main__":
 
     if os.path.basename(os.getcwd()) != 'course_maps':
         os.chdir('course_maps')
-    self = CourseData()
-    self.plot_course(11)
+    self = CourseData(11)
+    self.plot_course()

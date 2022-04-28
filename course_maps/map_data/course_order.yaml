@@ -136,7 +136,7 @@
       rounding: PORT
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: YB
       rounding: PORT
@@ -150,10 +150,10 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: YB
       rounding: PORT
@@ -170,10 +170,10 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: NAS1/NAS2
       rounding: GATE
@@ -187,10 +187,10 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: NAS1/NAS2
       rounding: GATE
@@ -210,10 +210,10 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: SC1
       rounding: PORT
@@ -227,19 +227,19 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: SC1
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: SC1
       rounding: PORT
@@ -253,28 +253,28 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: SC1
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: SC1
       rounding: PORT
     - order: 8
       name: W
-      rounding: PORT
+      rounding: null
     - order: 9
       name: R
-      rounding: PORT
+      rounding: null
     - order: 10
       name: SC1
       rounding: PORT
@@ -288,19 +288,19 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: NAS1/NAS2
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: NAS1/NAS2
       rounding: PORT
@@ -314,10 +314,10 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: GATE G
       rounding: PORT
@@ -331,19 +331,19 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: GATE G
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: GATE G
       rounding: PORT
@@ -357,28 +357,28 @@
       rounding: GATE
     - order: 2
       name: W
-      rounding: PORT
+      rounding: null
     - order: 3
       name: R
-      rounding: PORT
+      rounding: null
     - order: 4
       name: GATE G
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: GATE G
       rounding: PORT
     - order: 5
       name: W
-      rounding: PORT
+      rounding: null
     - order: 6
       name: R
-      rounding: PORT
+      rounding: null
     - order: 7
       name: GATE G
       rounding: PORT

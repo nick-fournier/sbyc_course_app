@@ -72,18 +72,26 @@ class CourseData:
 
             setattr(self, key, data)
 
-    def plot_course(self, course_number):
+    def plot_course(self, course_number, pin='T1', rounding='STARBOARD', **custom_coords):
         # Map center point
         center = coord_mean(self.marks[['lat', 'lon']])
-
         # Plot map and marks
-        m = folium.Map(location=center)
+        m = folium.Map(location=center, zoom_start=14)
 
         points = []
         for index, course_object in self.order[str(course_number)].iterrows():
-            if course_object.rounding.upper() == 'GATE':
+            if course_object.rounding != None and course_object.rounding.upper() == 'GATE':
                 object_marks = self.objects[course_object.name]['points']
                 object_coords = self.marks.loc[object_marks]
+
+                # If START, select which pin
+                if course_object.name == 'START':
+                    object_coords = object_coords.loc[['RC BOAT', pin]]
+                    # Update any custom coordinates
+                    for cc in custom_coords:
+                        object_coords.loc[cc, ['lat', 'lon']] = custom_coords[cc]
+
+                # Get effective center from remaining points (if there were more than 2)
                 object_center = coord_mean(object_coords[['lat', 'lon']])
 
                 # Effective mark location (center)
@@ -105,17 +113,22 @@ class CourseData:
                     ).add_to(m)
 
                 gate_points = object_coords[['lat', 'lon']].to_numpy().tolist()
-                folium.PolyLine(gate_points, color="red", weight=2.5, opacity=1).add_to(m)
+                folium.PolyLine(gate_points, color="blue", weight=2.5, opacity=1).add_to(m)
 
             else:
-                mark = copy.deepcopy(self.marks.loc[course_object.name])
-                mark['latlon'] = self.marks.loc[course_object.name][['lat', 'lon']].to_list()
+                # If starboard rounding, swap W and R
+                if course_object.name in ['W', 'R'] and rounding.upper() == 'STARBOARD':
+                    windward = {'W': 'R', 'R': 'W'}[course_object.name]
+                    mark = copy.deepcopy(self.marks.loc[windward])
+                    mark.name = course_object.name
+                else:
+                    mark = copy.deepcopy(self.marks.loc[course_object.name])
 
             points.append(mark[['lat', 'lon']].to_list())
 
             folium.Circle(
                 radius=int(mark.precision_value),
-                location=mark.latlon,
+                location=mark[['lat', 'lon']].to_list(),
                 popup=mark.name,
                 color="crimson",
                 fill=False,
@@ -124,10 +137,13 @@ class CourseData:
         # Plot map waypoint segments
         folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(m)
 
-        m.save('templates/map.html')
+        # m.save('templates/test_map.html')
+        return m
 
 
 if __name__ == "__main__":
-    os.chdir('course_maps')
+
+    if os.path.basename(os.getcwd()) != 'course_maps':
+        os.chdir('course_maps')
     self = CourseData()
     self.plot_course(11)

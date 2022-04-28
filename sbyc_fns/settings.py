@@ -10,9 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
-
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'sbyc_fns.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'course_maps/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

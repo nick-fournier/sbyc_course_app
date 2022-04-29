@@ -294,7 +294,7 @@
       rounding: null
     - order: 4
       name: NAS1/NAS2
-      rounding: PORT
+      rounding: GATE
     - order: 5
       name: W
       rounding: null
@@ -303,7 +303,7 @@
       rounding: null
     - order: 7
       name: NAS1/NAS2
-      rounding: PORT
+      rounding: GATE
     - order: 8
       name: FINISH
       rounding: GATE
@@ -320,7 +320,7 @@
       rounding: null
     - order: 4
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 5
       name: FINISH
       rounding: GATE
@@ -337,7 +337,7 @@
       rounding: null
     - order: 4
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 5
       name: W
       rounding: null
@@ -346,7 +346,7 @@
       rounding: null
     - order: 7
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 8
       name: FINISH
       rounding: GATE
@@ -363,7 +363,7 @@
       rounding: null
     - order: 4
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 5
       name: W
       rounding: null
@@ -372,7 +372,7 @@
       rounding: null
     - order: 7
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 5
       name: W
       rounding: null
@@ -381,7 +381,7 @@
       rounding: null
     - order: 7
       name: GATE G
-      rounding: PORT
+      rounding: GATE
     - order: 8
       name: FINISH
       rounding: GATE

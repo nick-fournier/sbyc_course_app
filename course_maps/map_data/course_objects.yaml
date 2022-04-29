@@ -31,7 +31,7 @@
   type: mark
   points:
     - YB
-- name: WR
+- name: W
   description: >-
     A set of temporary Orange inflatable marks set approximately 1 mile up of
     signal boat. This may be set in order to square the downwind leg in a cross
@@ -39,6 +39,13 @@
   type: offset
   points:
     - W
+- name: R
+  description: >-
+    A set of temporary Orange inflatable marks set approximately 1 mile up of
+    signal boat. This may be set in order to square the downwind leg in a cross
+    current. See diagram page 8.
+  type: offset
+  points:
     - R
 - name: GATE G
   description: >-
@@ -48,8 +55,8 @@
     mark to starboard.
   type: GATE
   points:
-    - G1
-    - G2
+    - GATE G1
+    - GATE G2
 - name: AS1
   description: Yellow mark, approx. 0.25 nm East of BVBC
   type: MARK

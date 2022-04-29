@@ -22,15 +22,14 @@ class CourseForm(forms.Form):
     def __init__(self, *args, **kwargs):
         url_kwargs = kwargs.pop('url_kwargs')
         kwargs.update(initial=url_kwargs)
-        print(kwargs)
         super(CourseForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Row(
                 Column('course_number', css_class='form-group col-md-2 mb-0'),
-                Column('pin', css_class='form-group col-md-3 mb-0'),
-                Column('rounding', css_class='form-group col-md-3 mb-0'),
+                Column('pin', css_class='form-group col-md-2 mb-0'),
+                Column('rounding', css_class='form-group col-md-2 mb-0'),
                 Submit('submit', 'Update'),
                 css_class='form-row'
             )

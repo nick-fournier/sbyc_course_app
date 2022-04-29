@@ -42,7 +42,8 @@ class CourseData:
         defaultKwargs = {'static': True,
                          'pin': 'T1',
                          'rounding': 'PORT',
-                         'custom_coords': {}}
+                         'custom_coords': {},
+                         'is_mobile': False}
         kwargs = {**defaultKwargs, **kwargs}
 
         # Setup class vars
@@ -61,13 +62,20 @@ class CourseData:
             self.load_static_data()
 
     def plot_course(self):
-        # Map center point
+
+        #TODO map doesn't scale, need to get pixels somehow...
+        if self.is_mobile:
+            height = '100%'
+
+        # Map overall center point
         center = coord_mean(self.marks[['lat', 'lon']])
         # Plot map and marks
-        m = folium.Map(location=center, zoom_start=14)
+        m = folium.Map(location=center, zoom_start=14, height='100%', width='100%')
 
         points = []
         for index, course_object in self.order[str(self.course_number)].iterrows():
+
+            # if len(self.objects[course_object.name]['points']) > 1:
             if course_object.rounding is not None and course_object.rounding.upper() == 'GATE':
                 object_marks = self.objects[course_object.name]['points']
                 object_coords = self.marks.loc[object_marks]
@@ -126,6 +134,9 @@ class CourseData:
         # TODO place this in the loop to break into separately labeled segments?
         folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(m)
 
+        # Update map center
+        m.location = coord_mean(pd.DataFrame(points, columns=['lat','lon']))
+
         # m.save('templates/test_map.html')
         return m
 
@@ -160,7 +171,7 @@ class CourseData:
 
 if __name__ == "__main__":
 
-    if os.path.basename(os.getcwd()) != 'course_maps':
-        os.chdir('course_maps')
-    self = CourseData(11)
+    # if os.path.basename(os.getcwd()) != 'course_maps':
+    #     os.chdir('course_maps')
+    self = CourseData(**{'course_number': 16})
     self.plot_course()

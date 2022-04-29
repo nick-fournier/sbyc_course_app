@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
- {% crispy form %}
-  <div><h1>Course #{{ course_number }}:</h1></div>
   {{ chart | safe }}
+  <div><h1>Course #{{ course_number }}:</h1></div>
+  {% crispy form %}
 {% endblock %}
 
 

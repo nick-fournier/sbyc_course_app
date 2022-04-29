@@ -28,10 +28,9 @@ class ChartView(FormView):
     def get_context_data(self, **kwargs):
         context = super(ChartView, self).get_context_data(**kwargs)
         if 'course_number' in self.kwargs:
-            course_number = self.kwargs['course_number']
-            # course_data = CourseData(course_number=course_number)
+            self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
             course_data = CourseData(**self.kwargs)
             chart = course_data.plot_course()._repr_html_()
-            context.update({'chart': chart, 'course_number': course_number})
+            context.update({'chart': chart, 'course_number': self.kwargs['course_number']})
         return context
 

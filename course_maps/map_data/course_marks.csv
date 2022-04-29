@@ -7,8 +7,8 @@ NAS2,dd mm.mmm,37 46.451 -122 20.461,0,meter
 YB,dd mm.mmm,37 47.971 -122 21.631,0,meter
 W,dd mm.mmm,37 46.915 -122 22.930,20,meter
 R,dd mm.mmm,37 46.766 -122 22.940,20,meter
-Gate G1,dd mm.mmm,37 49.717 -122 21.447,0,meter
-Gate G2,dd mm.mmm,37 46.979 -122 21.472,0,meter
+GATE G1,dd mm.mmm,37 46.800 -122 21.447,0,meter
+GATE G2,dd mm.mmm,37 46.900 -122 21.472,0,meter
 AS1,dd mm.mmm,37 46.283 -122 22.981,0,meter
 34,dd mm.mmm,37 45.501 -122 22.112,0,meter
 PIER 48,dd mm.mmm,37 46.582 -122 23.097,0,meter

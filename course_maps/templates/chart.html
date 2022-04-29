@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>South Beach Yacht Club - Friday Night Series</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <form action="/course-number/" method="post">
-        <label for="course_number">Course Number: </label>
-        <input id="course_number" type="text" name="course_number" value="{{ current_name }}">
-        <input type="submit" value="OK">
-    </form>
-  <div><h1>Folium map:</h1></div>
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div><h1>Course #{{ course_number }}:</h1></div>
   {{ chart | safe }}
-</body>
-</html>
+{% endblock %}
+
+

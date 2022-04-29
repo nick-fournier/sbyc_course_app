@@ -1,4 +1,6 @@
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 PIN = (
     # ('', 'Choose...'),
@@ -12,10 +14,25 @@ ROUNDING = (
 )
 
 class CourseForm(forms.Form):
-    course_number = forms.IntegerField(label='Course Number')
+    course_number = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Course Number'}))
     pin = forms.ChoiceField(choices=PIN)
     rounding = forms.ChoiceField(choices=ROUNDING)
     # custom_coords
 
-    def foo(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        url_kwargs = kwargs.pop('url_kwargs')
+        kwargs.update(initial=url_kwargs)
+        print(kwargs)
+        super(CourseForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.helper.layout = Layout(
+            Row(
+                Column('course_number', css_class='form-group col-md-2 mb-0'),
+                Column('pin', css_class='form-group col-md-3 mb-0'),
+                Column('rounding', css_class='form-group col-md-3 mb-0'),
+                Submit('submit', 'Update'),
+                css_class='form-row'
+            )
+        )
+

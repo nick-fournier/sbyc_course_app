@@ -37,20 +37,30 @@ def coord_diff(coord_df, units=hs.Unit.METERS):
 
 
 class CourseData:
-    def __init__(self, course_number, static=True):
+    def __init__(self, **kwargs):
+        # Set default kwargs
+        defaultKwargs = {'static': True,
+                         'pin': 'T1',
+                         'rounding': 'PORT',
+                         'custom_coords': {}}
+        kwargs = {**defaultKwargs, **kwargs}
+
+        # Setup class vars
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+
         self.marks = self.objects = self.order = None
-        self.course_number = course_number
+        # self.course_number = course_number
         self.settings = {'data_dir': 'course_maps/map_data',
                          'course_data': {
                              'marks': 'course_marks.csv',
                              'objects': 'course_objects.yaml',
                              'order': 'course_order.yaml'}
                          }
-        if static:
-
+        if self.static:
             self.load_static_data()
 
-    def plot_course(self, pin='T1', rounding='STARBOARD', **custom_coords):
+    def plot_course(self):
         # Map center point
         center = coord_mean(self.marks[['lat', 'lon']])
         # Plot map and marks
@@ -64,10 +74,10 @@ class CourseData:
 
                 # If START, select which pin
                 if course_object.name == 'START':
-                    object_coords = object_coords.loc[['RC BOAT', pin]]
+                    object_coords = object_coords.loc[['RC BOAT', self.pin]]
                     # Update any custom coordinates
-                    for cc in custom_coords:
-                        object_coords.loc[cc, ['lat', 'lon']] = custom_coords[cc]
+                    for cc in self.custom_coords:
+                        object_coords.loc[cc, ['lat', 'lon']] = self.custom_coords[cc]
 
                 # Get effective center from remaining points (if there were more than 2)
                 object_center = coord_mean(object_coords[['lat', 'lon']])
@@ -95,7 +105,7 @@ class CourseData:
 
             else:
                 # If starboard rounding, swap W and R
-                if course_object.name in ['W', 'R'] and rounding.upper() == 'STARBOARD':
+                if course_object.name in ['W', 'R'] and self.rounding.upper() == 'STARBOARD':
                     windward = {'W': 'R', 'R': 'W'}[course_object.name]
                     mark = copy.deepcopy(self.marks.loc[windward])
                     mark.name = course_object.name

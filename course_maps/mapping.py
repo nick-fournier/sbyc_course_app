@@ -38,10 +38,16 @@ def coord_diff(coord_df, units=hs.Unit.METERS):
 
 class CourseData:
     def __init__(self, course_number, static=True):
-        self.settings_file = "course_maps/settings.yaml"
         self.marks = self.objects = self.order = None
         self.course_number = course_number
+        self.settings = {'data_dir': 'course_maps/map_data',
+                         'course_data': {
+                             'marks': 'course_marks.csv',
+                             'objects': 'course_objects.yaml',
+                             'order': 'course_order.yaml'}
+                         }
         if static:
+
             self.load_static_data()
 
     def plot_course(self, pin='T1', rounding='STARBOARD', **custom_coords):
@@ -113,10 +119,8 @@ class CourseData:
         return m
 
     def load_static_data(self):
-        settings = yaml.load(open(self.settings_file), Loader=yaml.FullLoader)
-
-        for key, file in settings['course_data'].items():
-            fpath = os.path.join(settings['data_dir'], file)
+        for key, file in self.settings['course_data'].items():
+            fpath = os.path.join(self.settings['data_dir'], file)
 
             if '.csv' in file:
                 data = pd.read_csv(fpath)

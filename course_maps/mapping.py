@@ -123,6 +123,7 @@ class CourseData:
             ).add_to(m)
 
         # Plot map waypoint segments
+        # TODO place this in the loop to break into separately labeled segments?
         folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(m)
 
         # m.save('templates/test_map.html')

@@ -89,7 +89,7 @@ class CourseCharting:
         # Map overall center point
         center = coord_mean(self.marks[['lat', 'lon']])
         # Plot map and marks
-        m = folium.Map(location=center, zoom_start=14, height='100%', width='100%')
+        m = folium.Map(location=center, zoom_start=13, height='100%', width='100%')
 
         segment_points = []
         course_df = copy.deepcopy(self.order[str(self.course_number)])
@@ -141,23 +141,25 @@ class CourseCharting:
                 else:
                     mark = copy.deepcopy(self.marks.loc[course_object.name])
 
+                # Add the rounding to the chart table
+                course_df.loc[mark.name, 'rounding'] = self.rounding
 
+            mark_coords = mark[['lat', 'lon']].to_list()
             folium.Circle(
                 radius=int(mark.precision_value),
-                location=mark[['lat', 'lon']].to_list(),
+                location=mark_coords,
                 popup=mark.name,
                 color="crimson",
                 fill=False,
             ).add_to(m)
 
             # Waypoint segments
-            segment_points.append(mark[['lat', 'lon']].to_list())
+            segment_points.append(mark_coords)
+            course_df.loc[mark.name, ['lat', 'lon']] = mark_coords
 
             if len(segment_points) > 1:
                 # Calculate the segment bearing angle
-                mark['bearing'] = round(get_bearing(segment_points), 2)
-                course_df.loc[mark.name, ['lat', 'lon', 'bearing']] = mark[['lat', 'lon', 'bearing']]
-
+                course_df.loc[mark.name, 'bearing'] = get_bearing(segment_points)
                 folium.PolyLine(segment_points,
                                 color="red", weight=2.5, opacity=1,
                                 popup=course_object.order-1
@@ -166,6 +168,7 @@ class CourseCharting:
 
         # Update map center
         m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
+        course_df.bearing = course_df.bearing.round().astype('Int64')
 
         # m.save('templates/test_map.html')
         return {'chart': m, 'chart_table': course_df, 'course_number': self.course_number}
@@ -200,8 +203,9 @@ class CourseCharting:
 
 
 if __name__ == "__main__":
-
     # if os.path.basename(os.getcwd()) != 'course_maps':
     #     os.chdir('course_maps')
-    self = CourseCharting(**{'course_number': 16})
+    os.chdir('../')
+    print(os.getcwd())
+    self = CourseCharting(**{'course_number': 6})
     self.plot_course()

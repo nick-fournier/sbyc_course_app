@@ -5,6 +5,12 @@
     <title>South Beach Yacht Club - Friday Night Series</title>
 </head>
 <body>
+
+    <form action="/course-number/" method="post">
+        <label for="course_number">Course Number: </label>
+        <input id="course_number" type="text" name="course_number" value="{{ current_name }}">
+        <input type="submit" value="OK">
+    </form>
   <div><h1>Folium map:</h1></div>
   {{ chart | safe }}
 </body>

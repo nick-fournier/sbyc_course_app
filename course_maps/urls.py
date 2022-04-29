@@ -3,6 +3,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path('', views.index, name='index'),
-    path('', views.ChartView.as_view()),
+    path('<int:course_number>/', views.ChartView.as_view()),
 ]

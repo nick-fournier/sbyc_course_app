@@ -1,9 +1,6 @@
-from django.views.generic import TemplateView, DetailView
-from django.views.generic.edit import FormView, FormMixin
+from django.views.generic.edit import FormView
 from .mapping import CourseData
 from .forms import CourseForm
-from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
 
 
 class ChartView(FormView):

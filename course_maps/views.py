@@ -1,5 +1,6 @@
+import pandas as pd
 from django.views.generic.edit import FormView
-from .mapping import CourseData
+from .mapping import CourseCharting
 from .forms import CourseForm
 
 
@@ -27,10 +28,18 @@ class ChartView(FormView):
     # Map is then generated based on the URL key
     def get_context_data(self, **kwargs):
         context = super(ChartView, self).get_context_data(**kwargs)
+        table_classes = 'table table-striped table-bordered table-hover table-sm'
+
         if 'course_number' in self.kwargs:
             self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
-            course_data = CourseData(**self.kwargs)
-            chart = course_data.plot_course()._repr_html_()
-            context.update({'chart': chart, 'course_number': self.kwargs['course_number']})
+            course = CourseCharting(**self.kwargs)
+            course_data = course.plot_course()
+
+            # Render the chart to html and table to json
+            course_data['chart'] = course_data['chart']._repr_html_()
+            course_data['chart_table'] = course_data['chart_table'].to_html(classes=table_classes, index=False)
+
+            context.update(course_data)
+
         return context
 

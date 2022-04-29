@@ -6,6 +6,8 @@ import folium
 import haversine as hs
 import pandas as pd
 import numpy as np
+import math
+from geographiclib.geodesic import Geodesic
 
 
 def coord_to_latlon(string):
@@ -36,7 +38,24 @@ def coord_diff(coord_df, units=hs.Unit.METERS):
     return coord_df.apply(lambda x: hs.haversine(center, tuple(x), unit=units), axis=1).max()
 
 
-class CourseData:
+def get_bearing(point_list):
+    lat1, long1, lat2, long2 = [x for point in point_list for x in point]
+    bearing = Geodesic.WGS84.Inverse(lat1, long1, lat2, long2)['azi1']
+    compass_bearing = (bearing + 360) % 360
+    return compass_bearing
+
+
+def get_bearing_man(point_list):
+    lat1, long1, lat2, long2 = [x for point in point_list for x in point]
+    dLon = (long2 - long1)
+    x = math.cos(math.radians(lat2)) * math.sin(math.radians(dLon))
+    y = math.cos(math.radians(lat1)) * math.sin(math.radians(lat2)) - math.sin(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.cos(math.radians(dLon))
+    bearing = np.arctan2(x, y)
+    bearing = np.degrees(bearing)
+    compass_bearing = (bearing + 360) % 360
+    return compass_bearing
+
+class CourseCharting:
     def __init__(self, **kwargs):
         # Set default kwargs
         defaultKwargs = {'static': True,
@@ -72,7 +91,9 @@ class CourseData:
         # Plot map and marks
         m = folium.Map(location=center, zoom_start=14, height='100%', width='100%')
 
-        points = []
+        segment_points = []
+        course_df = copy.deepcopy(self.order[str(self.course_number)])
+
         for index, course_object in self.order[str(self.course_number)].iterrows():
 
             # if len(self.objects[course_object.name]['points']) > 1:
@@ -120,7 +141,6 @@ class CourseData:
                 else:
                     mark = copy.deepcopy(self.marks.loc[course_object.name])
 
-            points.append(mark[['lat', 'lon']].to_list())
 
             folium.Circle(
                 radius=int(mark.precision_value),
@@ -130,15 +150,25 @@ class CourseData:
                 fill=False,
             ).add_to(m)
 
-        # Plot map waypoint segments
-        # TODO place this in the loop to break into separately labeled segments?
-        folium.PolyLine(points, color="red", weight=2.5, opacity=1).add_to(m)
+            # Waypoint segments
+            segment_points.append(mark[['lat', 'lon']].to_list())
+
+            if len(segment_points) > 1:
+                # Calculate the segment bearing angle
+                mark['bearing'] = round(get_bearing(segment_points), 2)
+                course_df.loc[mark.name, ['lat', 'lon', 'bearing']] = mark[['lat', 'lon', 'bearing']]
+
+                folium.PolyLine(segment_points,
+                                color="red", weight=2.5, opacity=1,
+                                popup=course_object.order-1
+                                ).add_to(m)
+                segment_points.pop(0)
 
         # Update map center
-        m.location = coord_mean(pd.DataFrame(points, columns=['lat','lon']))
+        m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
 
         # m.save('templates/test_map.html')
-        return m
+        return {'chart': m, 'chart_table': course_df, 'course_number': self.course_number}
 
     def load_static_data(self):
         for key, file in self.settings['course_data'].items():
@@ -173,5 +203,5 @@ if __name__ == "__main__":
 
     # if os.path.basename(os.getcwd()) != 'course_maps':
     #     os.chdir('course_maps')
-    self = CourseData(**{'course_number': 16})
+    self = CourseCharting(**{'course_number': 16})
     self.plot_course()

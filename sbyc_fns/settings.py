@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'django_user_agents',
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -127,9 +129,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Production static files
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Development static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'course_maps/static'),
+    ]
 
 # Cache backend is optional, but recommended to speed up user agent parsing
 # CACHES = {

@@ -2,6 +2,7 @@ import pandas as pd
 from django.views.generic.edit import FormView
 from .mapping import CourseCharting
 from .forms import CourseForm
+from .flags import html_flag_tables
 
 
 class ChartView(FormView):
@@ -28,18 +29,17 @@ class ChartView(FormView):
     # Map is then generated based on the URL key
     def get_context_data(self, **kwargs):
         context = super(ChartView, self).get_context_data(**kwargs)
-        table_classes = 'table table-striped table-bordered table-hover table-sm'
+        html_table_classes = 'table table-striped table-bordered table-hover table-sm'
+        context.update(html_flag_tables(html_table_classes))
 
+        # print(course_data['flag_table'])
         if 'course_number' in self.kwargs:
             self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
             course = CourseCharting(**self.kwargs)
             course_data = course.plot_course()
-
             # Render the chart to html and table to json
             course_data['chart'] = course_data['chart']._repr_html_()
-            course_data['chart_table'] = course_data['chart_table'].to_html(classes=table_classes, index=False)
-
+            course_data['chart_table'] = course_data['chart_table'].to_html(classes=html_table_classes, index=False)
             context.update(course_data)
 
         return context
-

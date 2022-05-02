@@ -71,7 +71,7 @@ class CourseCharting:
 
         self.marks = self.objects = self.order = None
         # self.course_number = course_number
-        self.settings = {'data_dir': 'course_maps/map_data',
+        self.settings = {'data_dir': 'course_maps/fixtures/map_data',
                          'course_data': {
                              'marks': 'course_marks.csv',
                              'objects': 'course_objects.yaml',

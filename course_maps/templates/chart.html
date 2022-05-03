@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
   {{ chart | safe }}
-  <div><h2>Course #{{ course_number }}:</h2>
-  {% crispy form %}
+  <div>
+    <h2>Course #{{ course_number }}:</h2>
+    {% crispy form %}
   </div>
   <div>{{ chart_table | safe }}</div>
 
-  <h3>Letter Flags:</h3>
-  {{ alphabet_flag_table | safe }}
-
-  <h3>Number Flags:</h3>
-  {{ numeric_flag_table | safe }}
-
+  <div class="flex-parent-element">
+    <div class="flex-child-element magenta">
+      <h5>Number Flags:</h5>
+      {{ numeric_flag_table | safe }}
+    </div>
+    <div class="flex-child-element green">
+      <h5>Letter Flags:</h5>
+      {{ alphabet_flag_table | safe }}
+    </div>
+  </div>
 {% endblock %}
 
 

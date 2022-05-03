@@ -7,6 +7,7 @@ import haversine as hs
 import pandas as pd
 import numpy as np
 import math
+import string
 from geographiclib.geodesic import Geodesic
 
 
@@ -20,11 +21,13 @@ def coord_to_latlon(string):
 
     return pd.Series([lat, lon])
 
+def latlon_to_coord(ll_list):
+    pass
+
 
 def coord_mean(coord_df):
     if not all(coord_df.dtypes == [float, float]):
         coord_df = coord_df.apply(coord_to_latlon)
-
     return tuple(coord_df.sum() / len(coord_df.dropna()))
 
 
@@ -162,13 +165,15 @@ class CourseCharting:
                 course_df.loc[mark.name, 'bearing'] = get_bearing(segment_points)
                 folium.PolyLine(segment_points,
                                 color="red", weight=2.5, opacity=1,
-                                popup=course_object.order-1
+                                # popup=course_object.order-1
                                 ).add_to(m)
                 segment_points.pop(0)
 
         # Update map center
         m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
         course_df.bearing = course_df.bearing.round().astype('Int64')
+        course_df = course_df[['order', 'name', 'rounding', 'bearing', 'lat', 'lon']]
+        course_df.columns = [s.capitalize() for s in course_df.columns]
 
         # m.save('templates/test_map.html')
         return {'chart': m, 'chart_table': course_df, 'course_number': self.course_number}

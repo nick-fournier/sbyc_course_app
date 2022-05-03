@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import yaml
-from IPython.core.display import HTML
+import string
 
 
 def replace_all(string, target_list):
@@ -25,16 +25,20 @@ def static_image_index(image_path='course_maps/static/flags'):
 
 
 def path_to_image_html(src):
-    return "<img src=\"{}\" width=\"60\">".format(src)
+    return "<img src=\"{}\" height=\"30\">".format(src)
 
 
 def html_flag_tables(html_classes):
     flags = pd.DataFrame(url_image_index())
     flag_tables = {}
     for type in ['alphabet', 'numeric']:
-        flag_tables[type + '_flag_table'] = flags[flags.type == type].drop(columns='type').to_html(
+        flag_df = flags[flags.type == type].drop(columns='type')
+        # Capitalize column names
+        flag_df.columns = [s.capitalize() for s in flag_df.columns]
+        # Convert to html table
+        flag_tables[type + '_flag_table'] = flag_df.to_html(
             classes=html_classes, index=False, escape=False,
-            formatters=dict(flag=path_to_image_html)
+            formatters=dict(Flag=path_to_image_html)
         )
 
     return flag_tables

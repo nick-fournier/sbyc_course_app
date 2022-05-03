@@ -32,7 +32,6 @@ class ChartView(FormView):
         html_table_classes = 'table table-striped table-bordered table-hover table-sm'
         context.update(html_flag_tables(html_table_classes))
 
-        # print(course_data['flag_table'])
         if 'course_number' in self.kwargs:
             self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
             course = CourseCharting(**self.kwargs)

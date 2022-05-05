@@ -9,8 +9,8 @@ PIN = (
 )
 ROUNDING = (
     # ('', 'Choose...'),
-    ('PORT', 'Port'),
-    ('STARBOARD', 'Starboard')
+    ('PORT', 'Port (red flag)'),
+    ('STARBOARD', 'Starboard (green flag)')
 )
 
 class CourseForm(forms.Form):

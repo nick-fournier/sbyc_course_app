@@ -144,8 +144,11 @@ class CourseCharting:
                 else:
                     mark = copy.deepcopy(self.marks.loc[course_object.name])
 
-                # Add the rounding to the chart table
+            # Add the rounding to the chart table
+            if course_object.name in ['W', 'R']:
                 course_df.loc[mark.name, 'rounding'] = self.rounding
+            else:
+                course_df.loc[mark.name, 'rounding'] = course_object.rounding
 
             mark_coords = mark[['lat', 'lon']].to_list()
             folium.Circle(

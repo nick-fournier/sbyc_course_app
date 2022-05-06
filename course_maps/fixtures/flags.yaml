@@ -23,7 +23,7 @@
   type: alphabet
   flag: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ICS_Foxtrot.svg/50px-ICS_Foxtrot.svg.png
 - name: G
-  phonetic: Bravo
+  phonetic: Golf
   type: alphabet
   flag: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/ICS_Golf.svg/50px-ICS_Golf.svg.png
 - name: H
@@ -62,8 +62,8 @@
   phonetic: Quebec
   type: alphabet
   flag: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/ICS_Quebec.svg/50px-ICS_Quebec.svg.png
-- name: Q
-  phonetic: Quebec
+- name: R
+  phonetic: Romeo
   type: alphabet
   flag: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ICS_Romeo.svg/50px-ICS_Romeo.svg.png
 - name: S

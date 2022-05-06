@@ -29,6 +29,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Security & HTTPS SSL
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
 ALLOWED_HOSTS = ['sbyc-fns.herokuapp.com', 'localhost', '127.0.0.1']
 
 
@@ -122,12 +126,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Security & HTTPS SSL
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

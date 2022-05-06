@@ -1,6 +1,12 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
+import yaml
+
+with open('course_maps/fixtures/map_data/course_order.yaml') as f:
+    courses = yaml.load(f, Loader=yaml.FullLoader)
+
+COURSES = tuple([(c['course_number'], 'Course #' + str(c['course_number'])) for c in courses])
 
 PIN = (
     # ('', 'Choose...'),
@@ -14,7 +20,8 @@ ROUNDING = (
 )
 
 class CourseForm(forms.Form):
-    course_number = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Course Number'}))
+    #course_number = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Course Number'}))
+    course_number = forms.ChoiceField(choices=COURSES, initial="Course Number")
     pin = forms.ChoiceField(choices=PIN)
     rounding = forms.ChoiceField(choices=ROUNDING)
     # custom_coords

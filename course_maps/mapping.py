@@ -7,7 +7,6 @@ import haversine as hs
 import pandas as pd
 import numpy as np
 import math
-import string
 from geographiclib.geodesic import Geodesic
 
 

@@ -42,7 +42,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['sbyc-fns.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['sbyc-fns.herokuapp.com', 'nfournier.pythonanywhere.com',
+                 'localhost', '127.0.0.1']
 
 
 # Application definition

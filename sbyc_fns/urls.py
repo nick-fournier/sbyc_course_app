@@ -19,6 +19,6 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('charts/', include('course_maps.urls')),
+    path('charts/', include('sbyc_course_app.sbyc_course_app.urls')),
     path('', RedirectView.as_view(url='/charts/')),
 ]

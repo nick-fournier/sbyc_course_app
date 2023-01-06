@@ -24,7 +24,9 @@ else:
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent / 'sbyc_course_app' / 'sbyc_course_app'
+
+print(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -77,7 +79,7 @@ ROOT_URLCONF = 'sbyc_fns.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'course_maps/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,7 +150,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Development static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'course_maps/static'),
+    os.path.join(BASE_DIR, 'static'),
     ]
 
 # Cache backend is optional, but recommended to speed up user agent parsing

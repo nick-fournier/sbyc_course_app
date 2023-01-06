@@ -1,0 +1,387 @@
+- course_number: 1
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: '34'
+      rounding: PORT
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 2
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: '34'
+      rounding: PORT
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: '34'
+      rounding: PORT
+    - order: 6
+      name: SC1
+      rounding: PORT
+    - order: 7
+      name: FINISH
+      rounding: GATE
+- course_number: 3
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: '34'
+      rounding: PORT
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: AS1
+      rounding: PORT
+    - order: 6
+      name: SC1
+      rounding: PORT
+    - order: 7
+      name: FINISH
+      rounding: GATE
+- course_number: 4
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: '34'
+      rounding: PORT
+    - order: 4
+      name: NAS1
+      rounding: PORT
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 5
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 4
+      name: FINISH
+      rounding: GATE
+- course_number: 6
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: SC1
+      rounding: PORT
+    - order: 4
+      name: AS1
+      rounding: PORT
+    - order: 5
+      name: SC1
+      rounding: PORT
+    - order: 6
+      name: FINISH
+      rounding: GATE
+- course_number: 7
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: AS1
+      rounding: PORT
+    - order: 3
+      name: YB
+      rounding: PORT
+    - order: 4
+      name: FINISH
+      rounding: GATE
+- course_number: 8
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: PORT
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: YB
+      rounding: PORT
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 9
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: YB
+      rounding: PORT
+    - order: 5
+      name: SC1
+      rounding: PORT
+    - order: 6
+      name: FINISH
+      rounding: GATE
+- course_number: 10
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 11
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 5
+      name: AS1
+      rounding: PORT
+    - order: 6
+      name: SC1
+      rounding: PORT
+    - order: 7
+      name: FINISH
+      rounding: GATE
+- course_number: 12
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 13
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: SC1
+      rounding: PORT
+    - order: 8
+      name: FINISH
+      rounding: GATE
+- course_number: 14
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: SC1
+      rounding: PORT
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: SC1
+      rounding: PORT
+    - order: 8
+      name: W
+      rounding: null
+    - order: 9
+      name: R
+      rounding: null
+    - order: 10
+      name: SC1
+      rounding: PORT
+    - order: 11
+      name: FINISH
+      rounding: GATE
+- course_number: 15
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 8
+      name: FINISH
+      rounding: GATE
+- course_number: 16
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: FINISH
+      rounding: GATE
+- course_number: 17
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 8
+      name: FINISH
+      rounding: GATE
+- course_number: 19
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 8
+      name: FINISH
+      rounding: GATE

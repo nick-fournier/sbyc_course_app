@@ -3,6 +3,7 @@ import pandas as pd
 import yaml
 
 THIS_PATH = os.path.dirname(os.path.abspath(__file__))
+
 def replace_all(string, target_list):
     for x in target_list:
         string = string.replace(x, '')

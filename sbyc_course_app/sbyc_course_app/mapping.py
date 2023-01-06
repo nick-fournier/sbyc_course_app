@@ -9,6 +9,7 @@ import numpy as np
 import math
 from geographiclib.geodesic import Geodesic
 
+THIS_PATH = os.path.dirname(os.path.abspath(__file__))
 
 def coord_to_latlon(string):
     if not isinstance(string, str):
@@ -69,7 +70,7 @@ class CourseCharting:
 
         self.marks = self.objects = self.order = None
         # self.course_number = course_number
-        self.settings = {'data_dir': 'sbyc_course_app/fixtures/map_data',
+        self.settings = {'data_dir': os.path.join(THIS_PATH, 'fixtures/map_data'),
                          'course_data': {
                              'marks': 'course_marks.csv',
                              'objects': 'course_objects.yaml',

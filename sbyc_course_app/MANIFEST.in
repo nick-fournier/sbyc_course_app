@@ -1,5 +1,6 @@
 include LICENSE
 include README.md
+recursive-include sbyc_course_app/fixtures *
 recursive-include sbyc_course_app/static *
 recursive-include sbyc_course_app/templates *
 recursive-include docs *

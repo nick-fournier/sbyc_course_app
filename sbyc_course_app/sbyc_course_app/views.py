@@ -1,5 +1,5 @@
-import pandas as pd
 from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 from .mapping import CourseCharting
 from .forms import CourseForm
 from .flags import html_flag_tables
@@ -22,9 +22,7 @@ class ChartView(FormView):
 
     # Receives the cleaned data and updates the success URL accordingly
     def get_success_url(self):
-        url = '/charts/'
-        url += '-'.join([str(x) for x in self.form.cleaned_data.values()])
-        return url
+        return reverse_lazy('chart-view', kwargs=self.form.cleaned_data)
 
     # Map is then generated based on the URL key
     def get_context_data(self, **kwargs):

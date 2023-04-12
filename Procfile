@@ -1,1 +1,0 @@
-web: gunicorn sbyc_fns.wsgi

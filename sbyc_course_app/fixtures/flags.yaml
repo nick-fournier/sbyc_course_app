@@ -1,7 +1,7 @@
 - name: A
   phonetic: Alfa
   type: alphabet
-  flag: https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/ICS_Alpha.svg/50px-ICS_Alfa.svg.png
+  flag: https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/ICS_Alfa.svg/50px-ICS_alfa.svg.png
 - name: B
   phonetic: Bravo
   type: alphabet
@@ -37,7 +37,7 @@
 - name: J
   phonetic: Juliett
   type: alphabet
-  flag: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/ICS_Juliet.svg/50px-ICS_Juliett.svg.png
+  flag: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/ICS_Juliett.svg/50px-ICS_Juliett.svg.png
 - name: L
   phonetic: Lima
   type: alphabet

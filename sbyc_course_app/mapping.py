@@ -217,39 +217,6 @@ class CourseCharting:
         # m.save('templates/test_map.html')
         return {'chart': m, 'chart_table': course_df, 'course_number': self.course_number}
 
-    # def load_static_data(self):
-    #     for key, file in self.settings['course_data'].items():
-    #         fpath = os.path.join(self.settings['data_dir'], file)
-    #         data = None
-            
-    #         if '.csv' in file:
-    #             data = pd.read_csv(fpath)
-
-    #         with open(fpath) as f:
-    #             if '.yaml' in file:
-    #                 data = yaml.load(f, Loader=yaml.FullLoader)
-    #             if '.json' in file:
-    #                 data = json.load(f)
-            
-    #         # Data formatting
-    #         if key == 'marks':
-    #             assert isinstance(data, pd.DataFrame)
-    #             data[['lat', 'lon']] = data.coord_string.apply(coord_to_latlon)
-    #             data.set_index('name', inplace=True)
-    #             # data.index = data.name
-
-    #         if key == 'objects':
-    #             assert isinstance(data, list)
-    #             data = {x.pop('name'): x for x in data}
-
-    #         if key == 'order':
-    #             assert isinstance(data, list)
-    #             data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
-    #             for k in data.keys():
-    #                 data[k].set_index('name', inplace=True)
-
-    #         setattr(self, key, data)
-
 
 if __name__ == "__main__":
     # if os.path.basename(os.getcwd()) != 'sbyc_course_app':

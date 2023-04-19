@@ -210,8 +210,8 @@ class CourseCharting:
         # Update map center
         m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
         course_df.bearing = course_df.bearing.round().astype('Int64')
-        course_df = course_df[['order', 'rounding', 'bearing', 'lat', 'lon']]
-        course_df.reset_index()
+        course_df.reset_index(inplace=True)
+        course_df = course_df[['order', 'name', 'rounding', 'bearing', 'lat', 'lon']]
         course_df.columns = [s.capitalize() for s in course_df.columns]
 
         # m.save('templates/test_map.html')

@@ -18,12 +18,11 @@ PIN = (
 )
 ROUNDING = (
     # ('', 'Choose...'),
-    ('PORT', 'Port (red flag)'),
-    ('STARBOARD', 'Starboard (green flag)')
+    ('PORT', 'Port rounding (red flag)'),
+    ('STARBOARD', 'Starboard rounding (green flag)')
 )
 
 class CourseForm(forms.Form):
-    #course_number = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Course Number'}))
     course_number = forms.ChoiceField(choices=COURSES, initial="Course Number")
     pin = forms.ChoiceField(choices=PIN)
     rounding = forms.ChoiceField(choices=ROUNDING)
@@ -38,7 +37,7 @@ class CourseForm(forms.Form):
         self.helper.layout = Layout(
             Row(
                 Column('course_number', css_class='form-group col-md-2 mb-0'),
-                Column('pin', css_class='form-group col-md-2 mb-0'),
+                # Column('pin', css_class='form-group col-md-2 mb-0'),
                 Column('rounding', css_class='form-group col-md-2 mb-0'),
                 Submit('submit', 'Update'),
                 css_class='form-row'

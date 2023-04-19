@@ -22,7 +22,12 @@ class ChartView(FormView):
 
     # Receives the cleaned data and updates the success URL accordingly
     def get_success_url(self):
-        return reverse_lazy('chart-view', kwargs=self.form.cleaned_data)
+        # Add default values
+        kwargs = self.form.cleaned_data
+        kwargs['pin'] = kwargs.get('pin', 'RC BOAT')
+        kwargs['rounding'] = kwargs.get('rounding', 'PORT')
+        
+        return reverse_lazy('chart-view', kwargs=kwargs)
 
     # Map is then generated based on the URL key
     def get_context_data(self, **kwargs):

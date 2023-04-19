@@ -13,8 +13,8 @@ COURSES = tuple([(c['course_number'], 'Course #' + str(c['course_number'])) for 
 
 PIN = (
     # ('', 'Choose...'),
+    ('RC BOAT', 'Race Committee Boat'),
     ('T1', 'T1 (Orange buoy)'),
-    ('RC BOAT', 'Race Committee Boat')
 )
 ROUNDING = (
     # ('', 'Choose...'),
@@ -24,7 +24,7 @@ ROUNDING = (
 
 class CourseForm(forms.Form):
     course_number = forms.ChoiceField(choices=COURSES, initial="Course Number")
-    pin = forms.ChoiceField(choices=PIN)
+    # pin = forms.ChoiceField(choices=PIN, initial='RC BOAT')'
     rounding = forms.ChoiceField(choices=ROUNDING)
     # custom_coords
 
@@ -37,8 +37,8 @@ class CourseForm(forms.Form):
         self.helper.layout = Layout(
             Row(
                 Column('course_number', css_class='form-group col-md-2 mb-0'),
-                # Column('pin', css_class='form-group col-md-2 mb-0'),
                 Column('rounding', css_class='form-group col-md-2 mb-0'),
+                # Column('pin', css_class='form-group col-md-2 mb-0'),                
                 Submit('submit', 'Update'),
                 css_class='form-row'
             )

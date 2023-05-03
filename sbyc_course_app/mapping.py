@@ -126,6 +126,8 @@ class CourseCharting:
 
         # Map overall center point
         center = coord_mean(self.marks[['lat', 'lon']])
+        
+        # TODO: Split the folium mapping and the course route generator
         # Plot map and marks
         m = folium.Map(location=center, zoom_start=13, height='100%', width='100%')
 

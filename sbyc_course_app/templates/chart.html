@@ -10,6 +10,9 @@
   </div>
   <div>{{ chart_table | safe }}</div>
 
+  <input class="btn btn-primary" type="download" value="Download GPX" onclick="location.href='{% url 'download' course_number pin rounding%}'">
+  <input class="btn btn-primary" type="view" value="GPX Raw" onclick="location.href='{% url 'gpx_raw' course_number pin rounding%}'">
+
   <div class="flex-parent-element">
     <div class="flex-child-element magenta">
       <h5>Number Flags:</h5>

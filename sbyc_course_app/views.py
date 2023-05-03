@@ -1,8 +1,54 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
 from .mapping import CourseCharting
 from .forms import CourseForm
 from .flags import html_flag_tables
+import mimetypes
+import gpxpy
+import gpxpy.gpx
+
+
+# Returns the serialized course string as file in GPX format
+def gpx_download(request, **kwargs): 
+    course = CourseCharting(**kwargs)
+    course_data = course.plot_course()
+    
+    gpx_string = df2gpx(course_data['chart_table'])
+    
+    filename = f"sbyc_fns_course_{kwargs.get('course_number')}_{kwargs.get('rounding')}.gpx"
+
+    response = HttpResponse(gpx_string, content_type='application/xml')
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
+
+# Returns the serialized course string in GPX format
+def gpx_string(request, **kwargs):    
+    course = CourseCharting(**kwargs)
+    course_data = course.plot_course()
+    
+    gpx_string = df2gpx(course_data['chart_table'])            
+            
+    return HttpResponse(gpx_string, content_type='application/xml')
+
+
+def df2gpx(df):
+    gpx = gpxpy.gpx.GPX()
+
+    # Create first track in our GPX:
+    gpx_track = gpxpy.gpx.GPXTrack()
+    gpx.tracks.append(gpx_track)
+
+    # Create first segment in our GPX track:
+    gpx_segment = gpxpy.gpx.GPXTrackSegment()
+    gpx_track.segments.append(gpx_segment)
+
+    # Create points:
+    for idx in df.index:
+        gpx_point = gpxpy.gpx.GPXTrackPoint(df.loc[idx, 'Lat'], df.loc[idx, 'Lon'])
+        gpx_segment.points.append(gpx_point)
+    
+    return gpx.to_xml()
 
 
 class ChartView(FormView):
@@ -36,9 +82,14 @@ class ChartView(FormView):
         context.update(html_flag_tables(html_table_classes))
 
         if 'course_number' in self.kwargs:
+            # Generate course plot
             self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
             course = CourseCharting(**self.kwargs)
             course_data = course.plot_course()
+                        
+            # Add kwargs to context
+            context.update(self.kwargs)    
+                        
             # Render the chart to html and table to json
             course_data['chart'] = course_data['chart']._repr_html_()
             course_data['chart_table'] = course_data['chart_table'].to_html(classes=html_table_classes, index=False)

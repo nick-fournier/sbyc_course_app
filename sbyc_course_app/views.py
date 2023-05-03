@@ -13,12 +13,11 @@ import gpxpy.gpx
 def gpx_download(request, **kwargs): 
     course = CourseCharting(**kwargs)
     course_data = course.plot_course()
+    gpx_string = df2gpx(course_data['chart_table'], **kwargs)    
     
-    gpx_string = df2gpx(course_data['chart_table'])
-    
-    filename = f"sbyc_fns_course_{kwargs.get('course_number')}_{kwargs.get('rounding')}.gpx"
+    filename = f"sbyc_fns_course_{kwargs.get('course_number')}_{kwargs.get('rounding')}.gpx"   
 
-    response = HttpResponse(gpx_string, content_type='application/xml')
+    response = HttpResponse(gpx_string, content_type='application/gpx')
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
 
@@ -27,12 +26,30 @@ def gpx_string(request, **kwargs):
     course = CourseCharting(**kwargs)
     course_data = course.plot_course()
     
-    gpx_string = df2gpx(course_data['chart_table'])            
+    gpx_string = df2gpx(course_data['chart_table'], **kwargs)            
             
     return HttpResponse(gpx_string, content_type='application/xml')
 
 
-def df2gpx(df):
+def df2gpx(df, **kwargs):
+    course_no = kwargs.get('course_number', '')
+    rounding = kwargs.get('rounding', '').lower()
+
+    gpx = gpxpy.gpx.GPX()
+
+    # Create first route in our GPX:
+    gpx_route = gpxpy.gpx.GPXRoute()
+    gpx.routes.append(gpx_route)
+    
+    # Create points:
+    gpx_route.name = f"SBYC FNS Course #{course_no} {rounding} windward rounding"
+    for idx in df.index:
+        gpx_point = gpxpy.gpx.GPXRoutePoint(df.loc[idx, 'Lat'], df.loc[idx, 'Lon'])
+        gpx_route.points.append(gpx_point)
+    
+    return gpx.to_xml()
+
+def df2gpx_old(df):
     gpx = gpxpy.gpx.GPX()
 
     # Create first track in our GPX:

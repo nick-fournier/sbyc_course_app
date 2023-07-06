@@ -5,10 +5,13 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: '34'
+      rounding: PORT
     - order: 4
       name: SC1
+      rounding: PORT
     - order: 5
       name: FINISH
       rounding: GATE
@@ -19,14 +22,19 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: '34'
+      rounding: PORT
     - order: 4
       name: SC1
+      rounding: PORT
     - order: 5
       name: '34'
+      rounding: PORT
     - order: 6
       name: SC1
+      rounding: PORT
     - order: 7
       name: FINISH
       rounding: GATE
@@ -37,14 +45,19 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: '34'
+      rounding: PORT
     - order: 4
       name: SC1
+      rounding: PORT
     - order: 5
       name: AS1
+      rounding: PORT
     - order: 6
       name: SC1
+      rounding: PORT
     - order: 7
       name: FINISH
       rounding: GATE
@@ -55,10 +68,13 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: '34'
+      rounding: PORT
     - order: 4
       name: NAS1
+      rounding: PORT
     - order: 5
       name: FINISH
       rounding: GATE
@@ -69,6 +85,7 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: NAS1/NAS2
       rounding: GATE
@@ -82,12 +99,16 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: SC1
+      rounding: PORT
     - order: 4
       name: AS1
+      rounding: PORT
     - order: 5
       name: SC1
+      rounding: PORT
     - order: 6
       name: FINISH
       rounding: GATE
@@ -98,8 +119,10 @@
       rounding: GATE
     - order: 2
       name: AS1
+      rounding: PORT
     - order: 3
       name: YB
+      rounding: PORT
     - order: 4
       name: FINISH
       rounding: GATE
@@ -110,23 +133,14 @@
       rounding: GATE
     - order: 2
       name: W
+      rounding: PORT
     - order: 3
       name: R
+      rounding: null
     - order: 4
-      name: L
+      name: YB
+      rounding: PORT
     - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: L
-    - order: 8
-      name: W
-    - order: 9
-      name: R
-    - order: 10
-      name: L
-    - order: 11
       name: FINISH
       rounding: GATE
 - course_number: 9
@@ -136,17 +150,17 @@
       rounding: GATE
     - order: 2
       name: W
+      rounding: null
     - order: 3
       name: R
+      rounding: null
     - order: 4
-      name: L
+      name: YB
+      rounding: PORT
     - order: 5
-      name: W
+      name: SC1
+      rounding: PORT
     - order: 6
-      name: R
-    - order: 7
-      name: L
-    - order: 8
       name: FINISH
       rounding: GATE
 - course_number: 10
@@ -156,10 +170,13 @@
       rounding: GATE
     - order: 2
       name: W
+      rounding: null
     - order: 3
       name: R
+      rounding: null
     - order: 4
-      name: L
+      name: NAS1/NAS2
+      rounding: GATE
     - order: 5
       name: FINISH
       rounding: GATE
@@ -169,10 +186,21 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: SC1
+      name: R
+      rounding: null
     - order: 4
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 5
+      name: AS1
+      rounding: PORT
+    - order: 6
+      name: SC1
+      rounding: PORT
+    - order: 7
       name: FINISH
       rounding: GATE
 - course_number: 12
@@ -181,16 +209,15 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: '34'
+      name: R
+      rounding: null
     - order: 4
       name: SC1
+      rounding: PORT
     - order: 5
-      name: '34'
-    - order: 6
-      name: SC1
-    - order: 7
       name: FINISH
       rounding: GATE
 - course_number: 13
@@ -199,17 +226,23 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: '34'
+      name: R
+      rounding: null
     - order: 4
       name: SC1
+      rounding: PORT
     - order: 5
-      name: '34'
+      name: W
+      rounding: null
     - order: 6
-      name: AS1
+      name: R
+      rounding: null
     - order: 7
       name: SC1
+      rounding: PORT
     - order: 8
       name: FINISH
       rounding: GATE
@@ -219,12 +252,33 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: '34'
+      name: R
+      rounding: null
     - order: 4
-      name: NAS1
+      name: SC1
+      rounding: PORT
     - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: SC1
+      rounding: PORT
+    - order: 8
+      name: W
+      rounding: null
+    - order: 9
+      name: R
+      rounding: null
+    - order: 10
+      name: SC1
+      rounding: PORT
+    - order: 11
       name: FINISH
       rounding: GATE
 - course_number: 15
@@ -233,11 +287,24 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: NAS1/NAS2
-      rounding: 'GATE'
+      name: R
+      rounding: null
     - order: 4
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: NAS1/NAS2
+      rounding: GATE
+    - order: 8
       name: FINISH
       rounding: GATE
 - course_number: 16
@@ -246,14 +313,75 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
+      rounding: null
     - order: 3
-      name: SC1
+      name: R
+      rounding: null
     - order: 4
-      name: AS1
-    - order: 3
-      name: SC1
+      name: GATE G
+      rounding: GATE
     - order: 5
       name: FINISH
       rounding: GATE
-      
+- course_number: 17
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 8
+      name: FINISH
+      rounding: GATE
+- course_number: 19
+  marks:
+    - order: 1
+      name: START
+      rounding: GATE
+    - order: 2
+      name: W
+      rounding: null
+    - order: 3
+      name: R
+      rounding: null
+    - order: 4
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 5
+      name: W
+      rounding: null
+    - order: 6
+      name: R
+      rounding: null
+    - order: 7
+      name: GATE G
+      rounding: GATE
+    - order: 8
+      name: FINISH
+      rounding: GATE

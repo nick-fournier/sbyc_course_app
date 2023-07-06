@@ -92,9 +92,13 @@ for key, file in MAP_SETTINGS['course_data'].items():
 
     if key == 'order':
         assert isinstance(data, list)
-        data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
-        for k in data.keys():
-            data[k].set_index('name', inplace=True)
+        # data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
+        
+        # for k in data.keys():
+        #     # Default rounding to port
+        #     data[k].rounding = data[k].rounding.fillna('PORT')
+        #     data[k].set_index('name', inplace=True)
+        data = {x.pop('course_number'): x for x in data}
 
     MAP_DATA[key] = data
 
@@ -132,17 +136,33 @@ class CourseCharting:
         m = folium.Map(location=center, zoom_start=13, height='100%', width='100%')
 
         segment_points = []
-        course_df = self.order[str(self.course_number)].copy()
+        # course_df = self.order[str(self.course_number)].copy()
+        course = self.order[self.course_number]['marks'].copy()
+        
+        df_cols = ['order', 'rounding', 'bearing', 'lat', 'lon']
+        course_df = pd.DataFrame(columns=df_cols, index=[x['name'] for x in course])
+        course_df.index.name = 'name'
+        
+        # for mark_name, course_event in course_df.iterrows():
+        for mark in course:
+            
+            mark_rounding = 'PORT'
+            mark_name = mark['name']
+            mark_type = self.objects[mark_name]['type']
+            
+            # Add the order number to df
+            course_df.loc[mark_name, 'order'] = mark['order']            
 
-        for mark_name, course_object in course_df.iterrows():
-
-            # if len(self.objects[course_object.name]['points']) > 1:
-            if course_object.rounding is not None and course_object.rounding.upper() == 'GATE':
+            # if len(self.objects[course_event.name]['points']) > 1:
+            # if course_event.get('rounding', self.rounding).upper() == 'GATE':
+            # if course_object.rounding is not None and course_event.rounding.upper() == 'GATE':
+            if mark_type == 'GATE':
+                mark_rounding = 'GATE'
                 object_marks = self.objects[mark_name]['points']
                 object_coords = self.marks.loc[object_marks]
 
                 # If START, select which pin
-                if course_object.name == 'START':
+                if mark_name == 'START':
                     object_coords = object_coords.loc[['RC BOAT', self.pin]]
                     # Update any custom coordinates
                     for cc in self.custom_coords:
@@ -152,8 +172,7 @@ class CourseCharting:
                 object_center = coord_mean(object_coords[['lat', 'lon']])
 
                 # Effective mark location (center)
-                mark = course_object
-                mark['precision_value'] = 40  # coord_diff(object_coords, units=hs.Unit.METERS)
+                mark['precision_value'] = object_coords.precision_value.max()
 
                 mark['latlon'] = object_center
                 for k, v in iter(zip(['lat', 'lon'], object_center)):
@@ -173,36 +192,38 @@ class CourseCharting:
                 folium.PolyLine(gate_points, color="blue", weight=2.5, opacity=1).add_to(m)
 
             else:
-                # If starboard rounding, swap W and R
-                if course_object.name in ['W', 'R'] and self.rounding.upper() == 'STARBOARD':
-                    windward = {'W': 'R', 'R': 'W'}[course_object.name]
-                    mark = copy.deepcopy(self.marks.loc[windward])
-                    mark.name = course_object.name
+                # If starboard rounding, swap W and R and update mark data
+                if mark_name in ['W', 'R'] and self.rounding.upper() == 'STARBOARD':
+                    mark_rounding = 'STARBOARD'
+                    windward_mark_name = {'W': 'R', 'R': 'W'}[mark_name]
+                    mark.update(self.marks.loc[windward_mark_name].to_dict())
                 else:
-                    mark = copy.deepcopy(self.marks.loc[course_object.name])
+                    mark.update(self.marks.loc[mark_name].to_dict())
 
             # Add the rounding to the chart table
             if mark_name in ['W', 'R']:
                 course_df.loc[mark_name, 'rounding'] = self.rounding
             else:
-                course_df.loc[mark_name, 'rounding'] = course_object.rounding
+                course_df.loc[mark_name, 'rounding'] = mark_rounding
 
-            mark_coords = mark[['lat', 'lon']].to_list()
+            # mark_coords = mark[['lat', 'lon']].to_list()            
+            mark_coords = [mark['lat'], mark['lon']]
+            
             folium.Circle(
-                radius=int(mark.precision_value),
+                radius=int(mark.get('precision_value', 0)),
                 location=mark_coords,
-                popup=mark.name,
+                popup=mark_name,
                 color="crimson",
                 fill=False,
             ).add_to(m)
 
             # Waypoint segments
             segment_points.append(mark_coords)
-            course_df.loc[mark.name, ['lat', 'lon']] = mark_coords
+            course_df.loc[mark_name, ['lat', 'lon']] = mark_coords
 
             if len(segment_points) > 1:
                 # Calculate the segment bearing angle
-                course_df.loc[mark.name, 'bearing'] = get_bearing(segment_points)
+                course_df.loc[mark_name, 'bearing'] = get_bearing(segment_points)
                 folium.PolyLine(segment_points,
                                 color="red", weight=2.5, opacity=1,
                                 # popup=course_object.order-1
@@ -211,7 +232,12 @@ class CourseCharting:
 
         # Update map center
         m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
-        course_df.bearing = course_df.bearing.round().astype('Int64')
+        
+        # Fill in bearing
+        # course_df.bearing = course_df.bearing.astype('Int64')
+        course_df.bearing = course_df.bearing.fillna(0).astype(int).astype(str).replace('0', '-')        
+        
+        # Cleanup and output
         course_df.reset_index(inplace=True)
         course_df = course_df[['order', 'name', 'rounding', 'bearing', 'lat', 'lon']]
         course_df.columns = [s.capitalize() for s in course_df.columns]

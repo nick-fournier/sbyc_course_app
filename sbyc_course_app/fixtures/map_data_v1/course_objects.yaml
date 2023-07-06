@@ -1,10 +1,9 @@
-# This file contains the course objects, which can be composed of multiple marks
 - name: START
   description: >-
     The starting line will be between a staff displaying an orange flag on the 
     RC boat and a temporary orange mark called T1. In the absence of T1, SC1
     will be the start line pin.
-  type: GATE
+  mark_type: GATE
   points:
     - SC1
     - T1
@@ -17,18 +16,6 @@
   points:
     - PIER 48
     - PA
-- name: NAS1
-  description: >-
-    NAS1 Alameda Channel Mark "G1" FL G 4s Bell round to PORT
-  type: MARK
-  points:
-    - NAS1
-- name: NAS2
-  description: >-
-    NAS2 Alameda Channel Mark "R2" Fl R 4s round to STARBOARD
-  type: MARK
-  points:
-    - NAS2
 - name: NAS1/NAS2
   description: >-
     NAS1 Alameda Channel Mark "G1" FL G 4s Bell round to PORT or NAS2 Alameda
@@ -77,19 +64,8 @@
     - YB
 - name: SC1
   description: >-
-    SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission Rock Terminal
+    SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission
+    Rock Terminal
   type: MARK
   points:
     - SC1
-- name: L
-  type: MARK
-  description: >-
-    A temporary Orange leeward mark set approx. ~100 yards to weather of the Start Line.
-- name: '34'
-  type: MARK
-  description: >-
-    Red buoy “2” FL R 2.0s, approx. 0.5 nm east of Potrero Point
-- name: '33'
-  type: MARK
-  description: >-
-    Oak Inner Harbor Entrance, “4” Fl R 4s

@@ -4,11 +4,12 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: '34'
+      name: R
     - order: 4
-      name: SC1
+      name: NAS1/NAS2
+      rounding: GATE
     - order: 5
       name: FINISH
       rounding: GATE
@@ -18,13 +19,14 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: '34'
+      name: R
     - order: 4
-      name: SC1
+      name: NAS1/NAS2
+      rounding: GATE
     - order: 5
-      name: '34'
+      name: AS1      
     - order: 6
       name: SC1
     - order: 7
@@ -36,16 +38,19 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: '34'
+      name: R
     - order: 4
-      name: SC1
+      name: NAS1/NAS2
+      rounding: GATE
     - order: 5
-      name: AS1
+      name: W
     - order: 6
-      name: SC1
+      name: R
     - order: 7
+      name: NAS1/NAS2
+    - order: 8
       name: FINISH
       rounding: GATE
 - course_number: 4
@@ -54,12 +59,17 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: '34'
+      name: R
     - order: 4
-      name: NAS1
+      name: NAS2
+      rounding: STARBOARD
     - order: 5
+      name: '34'      
+    - order: 6
+      name: SC1      
+    - order: 7
       name: FINISH
       rounding: GATE
 - course_number: 5
@@ -68,11 +78,12 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: NAS1/NAS2
-      rounding: GATE
+      name: R
     - order: 4
+      name: SC1      
+    - order: 5
       name: FINISH
       rounding: GATE
 - course_number: 6
@@ -81,14 +92,18 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: SC1
+      name: R
     - order: 4
-      name: AS1
+      name: SC1      
     - order: 5
-      name: SC1
+      name: W
     - order: 6
+      name: R
+    - order: 7
+      name: SC1      
+    - order: 8
       name: FINISH
       rounding: GATE
 - course_number: 7
@@ -97,10 +112,24 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: W
     - order: 3
-      name: YB
+      name: R
     - order: 4
+      name: SC1      
+    - order: 5
+      name: W
+    - order: 6
+      name: R
+    - order: 7
+      name: SC1      
+    - order: 8
+      name: W
+    - order: 9
+      name: R
+    - order: 10
+      name: SC1      
+    - order: 11
       name: FINISH
       rounding: GATE
 - course_number: 8
@@ -169,9 +198,9 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: AS1      
     - order: 3
-      name: SC1
+      name: SC1      
     - order: 4
       name: FINISH
       rounding: GATE
@@ -181,15 +210,15 @@
       name: START
       rounding: GATE
     - order: 2
-      name: AS1
+      name: AS1      
     - order: 3
       name: '34'
     - order: 4
       name: SC1
     - order: 5
-      name: '34'
+      name: '34'      
     - order: 6
-      name: SC1
+      name: SC1      
     - order: 7
       name: FINISH
       rounding: GATE

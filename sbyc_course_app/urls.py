@@ -4,9 +4,9 @@ from . import views
 from . import forms
 
 urlpatterns = [
-    path('<int:course_number>-<str:pin>-<str:rounding>/', views.ChartView.as_view(), name='chart-view'),
-    path('', views.ChartView.as_view(), name='chart-view-index'),
-    # path('<int:course_number>-<str:pin>-<str:rounding>/<str:filepath>/', views.download_gpx)
-    path('<int:course_number>-<str:pin>-<str:rounding>/gpx/download', views.gpx_download, name='download'),
-    path('<int:course_number>-<str:pin>-<str:rounding>/gpx', views.gpx_string, name='gpx_raw')
+    path('gpx/<int:course_number>-<str:pin>-<str:rounding>/download', views.gpx_download, name='download'),
+    path('gpx/<int:course_number>-<str:pin>-<str:rounding>', views.gpx_string, name='gpx_raw'),
+    path('chart-app/', views.chart_app, name='chart-app'),
+    path('flags/', views.flag_table, name='flag-table'),
+    path('', views.index, name='index'),    
 ]

@@ -8,7 +8,30 @@
   /*border: 2px solid #7930ba;*/
   margin: 10px;
 }
+#map { height: 400px; }
 
 .flex-child-element:first-child {
   margin-right: 20px;
+}
+
+.label {
+  font-family: 'IM Fell DW Pica', serif;
+  color: #fec623;
+  font-size: 150%;
+  line-height: 20px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  cursor: inherit;
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
 }

@@ -1,13 +1,9 @@
-import copy
 import yaml
 import os
 import json
 import folium
-import haversine as hs
 import pandas as pd
-import numpy as np
-import math
-from geographiclib.geodesic import Geodesic
+from .utils import coord_to_latlon, coord_mean, get_bearing, chart_course
 
 THIS_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,50 +15,6 @@ MAP_SETTINGS = {
         'order': 'course_order.yaml'}
     }
 
-def coord_to_latlon(string):
-    if not isinstance(string, str):
-        lat, lon = [np.nan] * 2
-    else:
-        lat, lat_min, lon, lon_min = [float(x) for x in string.split(' ')]
-        lat += np.sign(lat) * (lat_min / 60)
-        lon += np.sign(lon) * (lon_min / 60)
-
-    return pd.Series([lat, lon])
-
-def coord_mean(coord_df):
-    if not all(coord_df.dtypes == [float, float]):
-        coord_df = coord_df.apply(coord_to_latlon)
-    return tuple(coord_df.sum() / len(coord_df.dropna()))
-
-
-def coord_diff(coord_df, units=hs.Unit.METERS):
-    # Distance from center point
-    center = coord_mean(coord_df)
-
-    if not all(coord_df.dtypes == [float, float]):
-        coord_df = coord_df.apply(coord_to_latlon)
-
-    return coord_df.apply(lambda x: hs.haversine(center, tuple(x), unit=units), axis=1).max()
-
-
-def get_bearing(point_list):
-    lat1, long1, lat2, long2 = [x for point in point_list for x in point]
-    bearing = getattr(Geodesic, 'WGS84').Inverse(lat1, long1, lat2, long2)['azi1']
-    compass_bearing = (bearing + 360) % 360
-    return compass_bearing
-
-
-def get_bearing_man(point_list):
-    lat1, long1, lat2, long2 = [x for point in point_list for x in point]
-    dLon = (long2 - long1)
-    x = math.cos(math.radians(lat2)) * math.sin(math.radians(dLon))
-    y = math.cos(math.radians(lat1)) * math.sin(math.radians(lat2)) - math.sin(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.cos(math.radians(dLon))
-    bearing = np.arctan2(x, y)
-    bearing = np.degrees(bearing)
-    compass_bearing = (bearing + 360) % 360
-    return compass_bearing
-
-
 
 # load_static_data once for session
 MAP_DATA = {}
@@ -72,19 +24,19 @@ for key, file in MAP_SETTINGS['course_data'].items():
     
     if '.csv' in file:
         data = pd.read_csv(fpath)
-
-    with open(fpath) as f:
-        if '.yaml' in file:
+    elif '.yaml' in file:
+        with open(fpath) as f:
             data = yaml.load(f, Loader=yaml.FullLoader)
-        if '.json' in file:
+    elif '.json' in file:
+        with open(fpath) as f:
             data = json.load(f)
     
     # Data formatting
     if key == 'marks':
         assert isinstance(data, pd.DataFrame)
         data[['lat', 'lon']] = data.coord_string.apply(coord_to_latlon)
+        data.precision_value = data.precision_value.fillna(0).astype(int)
         data.set_index('name', inplace=True)
-        # data.index = data.name
 
     if key == 'objects':
         assert isinstance(data, list)
@@ -92,17 +44,15 @@ for key, file in MAP_SETTINGS['course_data'].items():
 
     if key == 'order':
         assert isinstance(data, list)
-        # data = {str(x.pop('course_number')): pd.DataFrame(x['marks']) for x in data}
-        
-        # for k in data.keys():
-        #     # Default rounding to port
-        #     data[k].rounding = data[k].rounding.fillna('PORT')
-        #     data[k].set_index('name', inplace=True)
         data = {x.pop('course_number'): x for x in data}
 
     MAP_DATA[key] = data
 
 
+# Pre-compute course data
+COURSE_DATA = {i: chart_course(i, MAP_DATA) for i in MAP_DATA['order']}
+
+# TODO: eliminate this class
 class CourseCharting:
     def __init__(self, **kwargs):               
         # default kwargs, explicit types
@@ -231,7 +181,7 @@ class CourseCharting:
                 segment_points.pop(0)
 
         # Update map center
-        m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))
+        m.location = coord_mean(pd.DataFrame(segment_points, columns=['lat', 'lon']))  # type: ignore
         
         # Fill in bearing
         # course_df.bearing = course_df.bearing.astype('Int64')
@@ -244,12 +194,3 @@ class CourseCharting:
 
         # m.save('templates/test_map.html')
         return {'chart': m, 'chart_table': course_df, 'course_number': self.course_number}
-
-
-if __name__ == "__main__":
-    # if os.path.basename(os.getcwd()) != 'sbyc_course_app':
-    #     os.chdir('sbyc_course_app')
-    os.chdir('../')
-    print(os.getcwd())
-    self = CourseCharting(**{'course_number': 6})
-    self.plot_course()

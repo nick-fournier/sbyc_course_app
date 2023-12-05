@@ -1,13 +1,17 @@
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-from .mapping import CourseCharting
-from .forms import CourseForm
-from .flags import html_flag_tables
+from django.shortcuts import render, redirect
+import json
 import mimetypes
 import gpxpy
 import gpxpy.gpx
 
+from .utils import chart_course
+from .mapping import COURSE_DATA, MAP_DATA
+from .mapping import CourseCharting
+from .forms import CourseForm
+from .flags import html_flag_tables
 
 # Returns the serialized course string as file in GPX format
 def gpx_download(request, **kwargs): 
@@ -30,7 +34,6 @@ def gpx_string(request, **kwargs):
             
     return HttpResponse(gpx_string, content_type='application/xml')
 
-
 def df2gpx(df, **kwargs):
     course_no = kwargs.get('course_number', '')
     rounding = kwargs.get('rounding', '').lower()
@@ -46,24 +49,6 @@ def df2gpx(df, **kwargs):
     for idx in df.index:
         gpx_point = gpxpy.gpx.GPXRoutePoint(df.loc[idx, 'Lat'], df.loc[idx, 'Lon'])
         gpx_route.points.append(gpx_point)
-    
-    return gpx.to_xml()
-
-def df2gpx_old(df):
-    gpx = gpxpy.gpx.GPX()
-
-    # Create first track in our GPX:
-    gpx_track = gpxpy.gpx.GPXTrack()
-    gpx.tracks.append(gpx_track)
-
-    # Create first segment in our GPX track:
-    gpx_segment = gpxpy.gpx.GPXTrackSegment()
-    gpx_track.segments.append(gpx_segment)
-
-    # Create points:
-    for idx in df.index:
-        gpx_point = gpxpy.gpx.GPXTrackPoint(df.loc[idx, 'Lat'], df.loc[idx, 'Lon'])
-        gpx_segment.points.append(gpx_point)
     
     return gpx.to_xml()
 
@@ -100,7 +85,7 @@ class ChartView(FormView):
 
         if 'course_number' in self.kwargs:
             # Generate course plot
-            self.kwargs['is_mobile'] = self.request.user_agent.is_mobile
+            self.kwargs['is_mobile'] = self.request.user_agent.is_mobile # type: ignore
             course = CourseCharting(**self.kwargs)
             course_data = course.plot_course()
                         
@@ -113,3 +98,24 @@ class ChartView(FormView):
             context.update(course_data)
 
         return context
+
+def chart_app(request, **kwargs):
+    
+    # Convert dataframe to json
+    html_table_classes = 'table table-striped table-bordered table-hover table-sm'
+        
+    context = kwargs
+    context['course_data'] = json.dumps(COURSE_DATA)
+
+    context.update(html_flag_tables(html_table_classes))
+
+    return render(request, 'chart_app.html', context=context)
+
+def flag_table(request):
+    html_table_classes = 'table table-striped table-bordered table-hover table-sm'
+    context = html_flag_tables(html_table_classes)
+    return render(request, 'flag_table.html', context=context)
+
+def index(request):
+    return redirect("chart-app")
+    

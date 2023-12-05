@@ -10,8 +10,27 @@
 </head>
 <body>
   <div class="container">
+    {% load crispy_forms_tags %}
+    
     {% block content %}
+        <div class="flex-parent-element">
+            <div class="flex-child-element magenta">
+            <h5>Number Flags:</h5>
+            {{ numeric_flag_table | safe }}
+            </div>
+            <div class="flex-child-element green">
+            <h5>Letter Flags:</h5>
+            {{ alphabet_flag_table | safe }}
+            </div>
+        </div>
     {% endblock %}
   </div>
 </body>
 </html>
+
+
+
+
+
+
+

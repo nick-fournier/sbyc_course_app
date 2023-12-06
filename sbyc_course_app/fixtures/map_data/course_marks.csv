@@ -1,7 +1,7 @@
 name,format,coord_string,precision_value,precision_units
 SC1,dd mm.mmm,37 46.533 -122 21.949,0,meter
-T1,dd mm.mmm,37 46.606 -122 22.373,0,meter
-RC BOAT,dd mm.mmm,37 46.663 -122 22.368,40,meter
+RC BOAT,dd mm.mmm,37 46.906 -122 21.905,40,meter
+T1,dd mm.mmm,37 46.795 -122 21.892,40,meter
 NAS1,dd mm.mmm,37 46.635 -122 20.477,0,meter
 NAS2,dd mm.mmm,37 46.451 -122 20.461,0,meter
 YB,dd mm.mmm,37 47.971 -122 21.631,0,meter

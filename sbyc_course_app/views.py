@@ -3,12 +3,10 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
-import mimetypes
 import gpxpy
 import gpxpy.gpx
 
-from .utils import chart_course
-from .mapping import COURSE_DATA, MAP_DATA
+from .mapping import COURSE_DATA
 from .mapping import CourseCharting
 from .forms import CourseForm
 from .flags import html_flag_tables

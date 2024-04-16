@@ -8,6 +8,12 @@ var courses = JSON.parse(jsonString);
 // Get the select element
 var courseSelect = document.getElementById("courseSelect");
 
+// Add an option to the course select called "Marks" that just shows the marks without polylines
+var option = document.createElement("option");
+option.value = "marks";
+option.text = "Marks";
+courseSelect.add(option);
+
 // Populate the select options
 Object.keys(courses).forEach(courseNumber => {
   var option = document.createElement("option");
@@ -25,11 +31,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Function to load the selected route
 function loadRoute() {
   var selectedCourseNumber = courseSelect.value;
-  var selectedCourse = courses[selectedCourseNumber];
 
   // Clear previous markers
   map.eachLayer(layer => {
-    if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+    if (layer instanceof L.Marker || layer instanceof L.Polyline || layer instanceof L.Circle) {
       map.removeLayer(layer);
     }
   });
@@ -40,10 +45,37 @@ function loadRoute() {
     routeTable.deleteRow(1);
   }
 
+  // If the selected course is "Marks", 
+  // then plot selectedCourse as only markers from all courses to be plotted without polylines
+  // Otherwise, plot the selected course with a polyline
+  if (selectedCourseNumber === "marks") {
+
+    // Create selectedCourse as a list of all unique points from all courses
+    selectedCourse = [];
+    Object.values(courses).forEach(course => {
+      course.forEach(point => {
+        // Set bearing, order, and rounding to empty string
+        point.bearing = "";
+        point.order = "";
+        point.rounding = "";
+        if (!selectedCourse.some(p => p.name === point.name)) {
+          selectedCourse.push(point);
+        }
+      });
+    });
+    
+  } else {
+    var selectedCourse = courses[selectedCourseNumber];
+  }
+
+
   // Plot the route
   var routePoints = selectedCourse.map(point => [point.lat, point.lon]);
-  var polyline = L.polyline(routePoints, { color: 'blue' }).addTo(map);
-
+  var polyline = L.polyline(routePoints, { color: 'blue' })
+  if (selectedCourseNumber !== "marks") {
+    polyline.addTo(map);
+  }
+  
   // Add circle markers for each point with a radius based on Precision_value and label
   selectedCourse.forEach(point => {
     var circle = L.circle([point.lat, point.lon], {
@@ -111,6 +143,7 @@ function downloadGPX() {
 
   var selectedCourseNumber = courseSelect.value;
   var selectedCourse = courses[selectedCourseNumber];
+  var roundingOption = roundingDisplay.innerText.includes("Port") ? "Port" : "Starboard";
   
   var gpxData = generateGPX(selectedCourse, selectedCourseNumber, roundingOption);
   var blob = new Blob([gpxData], { type: "application/gpx+xml" });

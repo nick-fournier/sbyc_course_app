@@ -13,11 +13,9 @@
 
 </head>
 <body>
-  <label class='h5' for="courseSelect">Select Course:</label>
-  <select id="courseSelect" onchange="loadRoute()"></select>
-  <label class='h5' id="roundingDisplay">Port rounding (red flag)</label>
-  <button class="btn btn-primary" onclick="changeRounding()">Change Rounding</button>
-  <button class="btn btn-primary" onclick="downloadGPX()">Download</button>
+  <select id="courseSelect" style="font-size: 1.25em" onchange="loadRoute()"></select>
+  <button id='roundingButton' class="btn btn-danger" onclick="changeRounding()">Port</button>  
+  <button class="btn btn-primary" onclick="downloadGPX()">GPX</button>
   <a href="{% url 'flag-table' %}" class="btn btn-primary">Flags</a>
   
 
@@ -26,12 +24,10 @@
   <table id="routeTable">
     <thead>
       <tr>
-        <th>Order</th>
+        <th></th>
         <th>Name</th>
         <th>Rounding</th>
-        <th>Bearing</th>
-        <th>Lat</th>
-        <th>Lon</th>
+        <th>Bearing/Position</th>
       </tr>
     </thead>
     <tbody></tbody>

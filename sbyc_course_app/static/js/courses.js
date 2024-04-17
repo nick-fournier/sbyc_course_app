@@ -22,6 +22,9 @@ Object.keys(courses).forEach(courseNumber => {
   courseSelect.add(option);
 });
 
+// Add the marks data to the courses object
+courses['marks'] = getMarks();
+
 // Initialize the map
 var map = L.map('map').setView([37.77724166666667, -122.37284166666666], 15);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -30,8 +33,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Function to load the selected route
 function loadRoute() {
-  var selectedCourseNumber = courseSelect.value;
-
   // Clear previous markers
   map.eachLayer(layer => {
     if (layer instanceof L.Marker || layer instanceof L.Polyline || layer instanceof L.Circle) {
@@ -45,34 +46,12 @@ function loadRoute() {
     routeTable.deleteRow(1);
   }
 
-  // If the selected course is "Marks", 
-  // then plot selectedCourse as only markers from all courses to be plotted without polylines
-  // Otherwise, plot the selected course with a polyline
-  if (selectedCourseNumber === "marks") {
-
-    // Create selectedCourse as a list of all unique points from all courses
-    selectedCourse = [];
-    Object.values(courses).forEach(course => {
-      course.forEach(point => {
-        // Set bearing, order, and rounding to empty string
-        point.bearing = "";
-        point.order = "";
-        point.rounding = "";
-        if (!selectedCourse.some(p => p.name === point.name)) {
-          selectedCourse.push(point);
-        }
-      });
-    });
-    
-  } else {
-    var selectedCourse = courses[selectedCourseNumber];
-  }
-
+  var selectedCourse = courses[courseSelect.value];
 
   // Plot the route
   var routePoints = selectedCourse.map(point => [point.lat, point.lon]);
   var polyline = L.polyline(routePoints, { color: 'blue' })
-  if (selectedCourseNumber !== "marks") {
+  if (courseSelect.value !== "marks") {
     polyline.addTo(map);
   }
   
@@ -99,8 +78,11 @@ function loadRoute() {
     
     // Add row to the table
     var row = routeTable.insertRow();
-    row.innerHTML = `<td>${point.order}</td><td>${point.name}</td><td>${point.rounding}</td><td>${point.bearing}</td><td>${point.lat.toFixed(6)}</td><td>${point.lon.toFixed(6)}</td>`;
-
+    row.innerHTML = `
+    <td>${point.order}</td>
+    <td>${point.name}</td>
+    <td>${point.rounding}</td>
+    <td>${point.bearing}</td>`;
   });
 
   // Fit the map to the bounds of the route
@@ -110,16 +92,46 @@ function loadRoute() {
 // Load the initial route
 loadRoute();
 
+// Function to either select course or generate marks data
+function getMarks() {
+  // Create course as a list of all unique points from all courses
+  marks = [];
+
+  // For each course in courses and each point in course
+  Object.values(courses).forEach(course => {
+    course.forEach(point => {
+      if (!marks.some(p => p.name === point.name)) {
+        // Make a copy of the point object to avoid modifying the original object
+        point = Object.assign({}, point);
+        // set order to empty and bearing as lat/lon string "lat, lon"
+        point.bearing = `${point.lat.toFixed(6)}, ${point.lon.toFixed(6)}`
+        point.order = "";
+        marks.push(point);
+      }
+    });
+  });
+
+  return(marks)
+}
+
 // Function to change rounding order
 function changeRounding() {
-  var selectedCourseNumber = courseSelect.value;
-  var selectedCourse = courses[selectedCourseNumber];
+  var selectedCourse = courses[courseSelect.value];
 
   // Find all "W" and "R" points in the route
   var wPoints = selectedCourse.filter(point => point.name === "W");
   var rPoints = selectedCourse.filter(point => point.name === "R");
 
-  // Swap the Order values for each pair
+  // Swap the rounding label if port or starboard in the course
+  selectedCourse.forEach(point => {
+    if (point.rounding === 'PORT' && ['W', 'R'].includes(point.name)) {
+      point.rounding = 'STARBOARD'
+    } else if (point.rounding === "STARBOARD" && ['W', 'R'].includes(point.name)) {
+      point.rounding = 'PORT'
+    }
+  })
+
+  // Swap the Order values for each pair and the 'rounding' label
   for (var i = 0; i < Math.min(wPoints.length, rPoints.length); i++) {
       var tempOrder = wPoints[i].order;
       wPoints[i].order = rPoints[i].order;
@@ -129,9 +141,10 @@ function changeRounding() {
   // Sort the course_data array based on the Order values
   selectedCourse.sort((a, b) => a.order - b.order);
 
-  // Update the rounding display
-  var roundingOption = roundingDisplay.innerText.includes("Port") ? "Starboard" : "Port";
-  roundingDisplay.innerText = `${roundingOption} rounding (${roundingOption === "Port" ? "red" : "green"} flag)`;
+  // Update the rounding button text and color. If port and red, set to starboard and green, and vice versa
+  var roundingButton = document.getElementById("roundingButton");
+  roundingButton.innerText = roundingButton.innerText.includes("Port") ? "Starboard" : "Port";
+  roundingButton.style.backgroundColor = roundingButton.innerText.includes("Port") ? "red" : "green";
 
   // Reload the route
   loadRoute();
@@ -143,8 +156,8 @@ function downloadGPX() {
 
   var selectedCourseNumber = courseSelect.value;
   var selectedCourse = courses[selectedCourseNumber];
-  var roundingOption = roundingDisplay.innerText.includes("Port") ? "Port" : "Starboard";
-  
+  var roundingOption = roundingButton.innerText.includes("Port") ? "Port" : "Starboard";
+
   var gpxData = generateGPX(selectedCourse, selectedCourseNumber, roundingOption);
   var blob = new Blob([gpxData], { type: "application/gpx+xml" });
 
@@ -176,3 +189,36 @@ function generateGPX(course, courseNumber, roundingOption) {
 
   return gpx;
 }
+
+// Function to get the current GPS location
+function getGPSLocation() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      }, reject);
+    } else {
+      reject(new Error("Geolocation is not supported by this browser."));
+    }
+  });
+}
+
+// Function to display a location as a blue circle on a map
+function displayLocation(map, latitude, longitude) {
+  L.circle([latitude, longitude], {
+    color: 'blue',
+    fillColor: '#30f',
+    fillOpacity: 0.5,
+    radius: 50
+  }).addTo(map);
+}
+
+// Usage
+getGPSLocation().then(position => {
+  displayLocation(map, position.latitude, position.longitude);
+}).catch(error => {
+  console.error(error);
+});

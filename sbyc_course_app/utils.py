@@ -118,7 +118,7 @@ def chart_course(course_number, map_data, **kwargs):
 
         if len(segment_points) > 1:
             # Calculate the segment bearing angle
-            mark['bearing'] = get_bearing(segment_points)
+            mark['bearing'] = int(get_bearing(segment_points))
             segment_points.pop(0)
         else:
             mark['bearing'] = '-'

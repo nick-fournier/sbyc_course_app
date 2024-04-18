@@ -1,288 +1,153 @@
 - course_number: 1
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: NAS1/NAS2
-      rounding: GATE
-    - order: 5
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - SC1
+    - FINISH
 - course_number: 2
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: NAS1/NAS2
-      rounding: GATE
-    - order: 5
-      name: AS1      
-    - order: 6
-      name: SC1
-    - order: 7
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - '34'
+    - SC1
+    - '34'
+    - SC1
+    - FINISH
 - course_number: 3
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: NAS1/NAS2
-      rounding: GATE
-    - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: NAS1/NAS2
-    - order: 8
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - '34'
+    - SC1
+    - AS1
+    - SC1
+    - FINISH
 - course_number: 4
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: NAS2
-      rounding: STARBOARD
-    - order: 5
-      name: '34'      
-    - order: 6
-      name: SC1      
-    - order: 7
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - '34'
+    - NAS1
+    - FINISH
 - course_number: 5
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: SC1      
-    - order: 5
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - NAS1/NAS2
+    - FINISH
 - course_number: 6
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: SC1      
-    - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: SC1      
-    - order: 8
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - SC1
+    - AS1
+    - SC1
+    - FINISH
 - course_number: 7
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: SC1      
-    - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: SC1      
-    - order: 8
-      name: W
-    - order: 9
-      name: R
-    - order: 10
-      name: SC1      
-    - order: 11
-      name: FINISH
-      rounding: GATE
+    - START
+    - AS1
+    - YB
+    - FINISH
 - course_number: 8
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: L
-    - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: L
-    - order: 8
-      name: W
-    - order: 9
-      name: R
-    - order: 10
-      name: L
-    - order: 11
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - YB
+    - FINISH
 - course_number: 9
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: L
-    - order: 5
-      name: W
-    - order: 6
-      name: R
-    - order: 7
-      name: L
-    - order: 8
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - YB
+    - SC1
+    - FINISH
 - course_number: 10
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: W
-    - order: 3
-      name: R
-    - order: 4
-      name: L
-    - order: 5
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - NAS1/NAS2
+    - FINISH
 - course_number: 11
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1      
-    - order: 3
-      name: SC1      
-    - order: 4
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - NAS1/NAS2
+    - AS1
+    - SC1
+    - FINISH
 - course_number: 12
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1      
-    - order: 3
-      name: '34'
-    - order: 4
-      name: SC1
-    - order: 5
-      name: '34'      
-    - order: 6
-      name: SC1      
-    - order: 7
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - SC1
+    - FINISH
 - course_number: 13
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1
-    - order: 3
-      name: '34'
-    - order: 4
-      name: SC1
-    - order: 5
-      name: '34'
-    - order: 6
-      name: AS1
-    - order: 7
-      name: SC1
-    - order: 8
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
+    - FINISH
 - course_number: 14
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1
-    - order: 3
-      name: '34'
-    - order: 4
-      name: NAS1
-    - order: 5
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
+    - FINISH
 - course_number: 15
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1
-    - order: 3
-      name: NAS1/NAS2
-      rounding: 'GATE'
-    - order: 4
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - NAS1/NAS2
+    - W
+    - R
+    - NAS1/NAS2
+    - FINISH
 - course_number: 16
   marks:
-    - order: 1
-      name: START
-      rounding: GATE
-    - order: 2
-      name: AS1
-    - order: 3
-      name: SC1
-    - order: 4
-      name: AS1
-    - order: 3
-      name: SC1
-    - order: 5
-      name: FINISH
-      rounding: GATE
+    - START
+    - W
+    - R
+    - GATE G
+    - FINISH
+- course_number: 17
+  marks:
+    - START
+    - W
+    - R
+    - GATE G
+    - W
+    - R
+    - GATE G
+    - FINISH
+- course_number: 18
+  marks:
+    - START
+    - W
+    - R
+    - GATE G
+    - W
+    - R
+    - GATE G
+    - W
+    - R
+    - GATE G
+    - FINISH
       

@@ -69,17 +69,21 @@ def chart_course(course_number, map_data, **kwargs):
     assert objects is not None
     
     segment_points = []
-    course = order[course_number]['marks'].copy()
+    course = []
     gates = {}
     
     # Loop through the course and populate the attributes
-    for mark in course:
+    for order, mark_name in enumerate(order[course_number]['marks']):
         
-        mark_name = mark['name']
-
+        # Populate mark data from the objects dict
+        mark = {
+            'name': mark_name,
+            'order': order,
+            **objects[mark_name]
+            }
+        
         # If GATE, select which marks
-        if objects[mark_name]['type']  == 'GATE':
-            mark['rounding'] = 'GATE'
+        if mark['rounding'] == 'GATE':
             object_marks = objects[mark_name]['points']
             object_coords = marks.loc[object_marks]
 
@@ -122,6 +126,8 @@ def chart_course(course_number, map_data, **kwargs):
             segment_points.pop(0)
         else:
             mark['bearing'] = '-'
+        
+        course.append(mark)
 
     return course
     

@@ -216,9 +216,18 @@ function displayLocation(map, latitude, longitude) {
   }).addTo(map);
 }
 
-// Usage
-getGPSLocation().then(position => {
-  displayLocation(map, position.latitude, position.longitude);
-}).catch(error => {
-  console.error(error);
-});
+// Get the current GPS location and display it on the map
+// getGPSLocation().then(position => {
+//   displayLocation(map, position.latitude, position.longitude);
+// }).catch(error => {
+//   console.error(error);
+// });
+
+// Update the GPS location every 5 seconds
+setInterval(() => {
+  getLocation().then(position => {
+    console.log(`Latitude: ${position.latitude}, Longitude: ${position.longitude}`);
+  }).catch(error => {
+    console.error(error);
+  });
+}, 5000);

@@ -13,13 +13,14 @@
 
 </head>
 <body>
-  <select id="courseSelect" style="font-size: 1.25em" onchange="loadRoute()"></select>
-  <button id='roundingButton' class="btn btn-danger" onclick="changeRounding()">Port</button>  
-  <button class="btn btn-primary" onclick="downloadGPX()">GPX</button>
-  <a href="{% url 'flag-table' %}" class="btn btn-primary">Flags</a>
-  
 
   <div id="map"></div>
+
+
+  <button class="btn btn-primary" onclick="downloadGPX()">GPX</button>
+  <a href="{% url 'flag-table' %}" class="btn btn-primary">Flags</a>
+  <button id='roundingButton' class="btn btn-danger" onclick="changeRounding()">Port</button>  
+  <select id="courseSelect" style="font-size: 1.25em" onchange="loadRoute()"></select>  
 
   <table id="routeTable">
     <thead>

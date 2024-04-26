@@ -1,153 +1,140 @@
 - course_number: 1
   marks:
     - START
-    - AS1
-    - SC1
+    - W
+    - R
+    - NAS1/NAS2
     - FINISH
 - course_number: 2
   marks:
     - START
+    - W
+    - R
+    - NAS1/NAS2
     - AS1
-    - '34'
-    - SC1
-    - '34'
     - SC1
     - FINISH
 - course_number: 3
   marks:
     - START
-    - AS1
-    - '34'
-    - SC1
-    - AS1
-    - SC1
+    - W
+    - R
+    - NAS1/NAS2
+    - W
+    - R
+    - NAS1/NAS2
     - FINISH
 - course_number: 4
   marks:
     - START
-    - AS1
+    - W
+    - R
+    - NAS2
     - '34'
-    - NAS1
+    - SC1
     - FINISH
 - course_number: 5
   marks:
     - START
-    - AS1
-    - NAS1/NAS2
+    - W
+    - R
+    - SC1
     - FINISH
 - course_number: 6
   marks:
     - START
-    - AS1
+    - W
+    - R
     - SC1
-    - AS1
+    - W
+    - R
     - SC1
     - FINISH
 - course_number: 7
   marks:
     - START
-    - AS1
-    - YB
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
     - FINISH
 - course_number: 8
   marks:
     - START
     - W
     - R
-    - YB
+    - L
+    - W
+    - R
+    - L
+    - W
+    - R
+    - L
     - FINISH
 - course_number: 9
   marks:
     - START
     - W
     - R
-    - YB
-    - SC1
+    - L
+    - W
+    - R
+    - L
     - FINISH
 - course_number: 10
   marks:
     - START
     - W
     - R
-    - NAS1/NAS2
+    - L
     - FINISH
 - course_number: 11
   marks:
     - START
-    - W
-    - R
-    - NAS1/NAS2
     - AS1
     - SC1
     - FINISH
 - course_number: 12
   marks:
     - START
-    - W
-    - R
+    - AS1
+    - '34'
+    - SC1
+    - '34'
     - SC1
     - FINISH
 - course_number: 13
   marks:
     - START
-    - W
-    - R
+    - AS1
+    - '34'
     - SC1
-    - W
-    - R
+    - AS1
     - SC1
     - FINISH
 - course_number: 14
   marks:
     - START
-    - W
-    - R
-    - SC1
-    - W
-    - R
-    - SC1
-    - W
-    - R
-    - SC1
+    - AS1
+    - '34'
+    - NAS1
     - FINISH
 - course_number: 15
   marks:
     - START
-    - W
-    - R
-    - NAS1/NAS2
-    - W
-    - R
+    - AS1
     - NAS1/NAS2
     - FINISH
 - course_number: 16
   marks:
     - START
-    - W
-    - R
-    - GATE G
+    - AS1
+    - SC1
+    - AS1
+    - SC1
     - FINISH
-- course_number: 17
-  marks:
-    - START
-    - W
-    - R
-    - GATE G
-    - W
-    - R
-    - GATE G
-    - FINISH
-- course_number: 18
-  marks:
-    - START
-    - W
-    - R
-    - GATE G
-    - W
-    - R
-    - GATE G
-    - W
-    - R
-    - GATE G
-    - FINISH
-      

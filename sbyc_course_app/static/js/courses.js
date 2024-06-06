@@ -54,14 +54,14 @@ function loadRoute() {
   if (courseSelect.value !== "marks") {
     polyline.addTo(map);
   }
-  
-  // Add circle markers for each point with a radius based on Precision_value and label
+
+  // Add circle markers for each point with a radius based on Precision and label
   selectedCourse.forEach(point => {
     var circle = L.circle([point.lat, point.lon], {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.5,
-      radius: point.precision_value
+      radius: point.precision
     }).addTo(map);
 
     // Add a label with the name of the point
@@ -163,7 +163,7 @@ function downloadGPX() {
 
   var a = document.createElement("a");
   a.href = window.URL.createObjectURL(blob);
-  a.download = `course_${selectedCourseNumber}.gpx`;
+  a.download = `course_${selectedCourseNumber}_${roundingOption}.gpx`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -174,16 +174,15 @@ function generateGPX(course, courseNumber, roundingOption) {
   var gpx = `<?xml version="1.0" encoding="UTF-8"?>
   <gpx version="1.1" creator="FNS Course App">
     <rte>
-      <name>SBYC FNS Course #${courseNumber} ${roundingOption} windward rounding</name>
-      <rtept>`;
+      <name>SBYC FNS Course #${courseNumber} ${roundingOption} windward rounding</name>`;
 
   course.forEach(point => {
-    gpx += `<trkpt lat="${point.lat}" lon="${point.lon}">
+    gpx += `<rtept lat="${point.lat}" lon="${point.lon}">
               <name>${point.name}</name>
-            </trkpt>`;
+            </rtept>`;
   });
 
-  gpx += `</rtept>
+  gpx += `
     </rte>
   </gpx>`;
 
@@ -216,17 +215,11 @@ function displayLocation(map, latitude, longitude) {
   }).addTo(map);
 }
 
-// Get the current GPS location and display it on the map
-// getGPSLocation().then(position => {
-//   displayLocation(map, position.latitude, position.longitude);
-// }).catch(error => {
-//   console.error(error);
-// });
-
 // Update the GPS location every 5 seconds
 setInterval(() => {
-  getLocation().then(position => {
-    console.log(`Latitude: ${position.latitude}, Longitude: ${position.longitude}`);
+  getGPSLocation().then(position => {
+    // console.log(`Latitude: ${position.latitude}, Longitude: ${position.longitude}`);
+    displayLocation(map, position.latitude, position.longitude);
   }).catch(error => {
     console.error(error);
   });

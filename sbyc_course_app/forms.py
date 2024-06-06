@@ -11,7 +11,7 @@ with open(os.path.join(THIS_PATH, 'fixtures/map_data/course_order.yaml')) as f:
 
 COURSES = (
     ('', 'Select course...'),
-    *tuple([(c['course_number'], 'Course #' + str(c['course_number'])) for c in courses])
+    *tuple([(i, 'Course #' + str(i)) for i in courses])
 )
 
 PIN = (

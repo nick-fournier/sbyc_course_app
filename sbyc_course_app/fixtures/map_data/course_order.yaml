@@ -1,10 +1,10 @@
-- course_number: 1
+1:
   marks:
     - START
     - AS1
     - SC1
     - FINISH
-- course_number: 2
+2:
   marks:
     - START
     - AS1
@@ -13,7 +13,7 @@
     - '34'
     - SC1
     - FINISH
-- course_number: 3
+3:
   marks:
     - START
     - AS1
@@ -22,20 +22,20 @@
     - AS1
     - SC1
     - FINISH
-- course_number: 4
+4:
   marks:
     - START
     - AS1
     - '34'
     - NAS1
     - FINISH
-- course_number: 5
+5:
   marks:
     - START
     - AS1
     - NAS1/NAS2
     - FINISH
-- course_number: 6
+6:
   marks:
     - START
     - AS1
@@ -43,20 +43,20 @@
     - AS1
     - SC1
     - FINISH
-- course_number: 7
+7:
   marks:
     - START
     - AS1
     - YB
     - FINISH
-- course_number: 8
+8:
   marks:
     - START
     - W
     - R
     - YB
     - FINISH
-- course_number: 9
+9:
   marks:
     - START
     - W
@@ -64,14 +64,14 @@
     - YB
     - SC1
     - FINISH
-- course_number: 10
+10:
   marks:
     - START
     - W
     - R
     - NAS1/NAS2
     - FINISH
-- course_number: 11
+11:
   marks:
     - START
     - W
@@ -80,7 +80,7 @@
     - AS1
     - SC1
     - FINISH
-- course_number: 12
+12:
   marks:
     - START
     - W
@@ -90,24 +90,14 @@
     - R
     - NAS1/NAS2
     - FINISH
-- course_number: 13
+13:
   marks:
     - START
     - W
     - R
     - SC1
     - FINISH
-- course_number: 14
-  marks:
-    - START
-    - W
-    - R
-    - SC1
-    - W
-    - R
-    - SC1
-    - FINISH
-- course_number: 15
+14:
   marks:
     - START
     - W
@@ -116,18 +106,28 @@
     - W
     - R
     - SC1
+    - FINISH
+15:
+  marks:
+    - START
+    - W
+    - R
+    - SC1
+    - W
+    - R
+    - SC1
     - W
     - R
     - SC1
     - FINISH
-- course_number: 16
+16:
   marks:
     - START
     - W
     - R
     - L
     - FINISH
-- course_number: 17
+17:
   marks:
     - START
     - W
@@ -137,7 +137,7 @@
     - R
     - L
     - FINISH
-- course_number: 18
+18:
   marks:
     - START
     - W

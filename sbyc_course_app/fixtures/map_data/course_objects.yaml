@@ -1,5 +1,5 @@
 # This file contains the course objects, which can be composed of multiple marks
-- name: START
+START:
   description: >-
     The starting line will be between a staff displaying an orange flag on the 
     RC boat and a temporary orange mark called T1. In the absence of T1, SC1
@@ -9,7 +9,7 @@
     - SC1
     - T1
     - RC BOAT
-- name: FINISH
+FINISH:
   description: >-
     Finish line between the eastern corner of Pier 48 and Green channel marker
     FL G 2.5s"PA"
@@ -17,19 +17,19 @@
   points:
     - PIER 48
     - PA
-- name: NAS1
+NAS1:
   description: >-
     NAS1 Alameda Channel Mark "G1" FL G 4s Bell round to PORT
   rounding: PORT
   points:
     - NAS1
-- name: NAS2
+NAS2:
   description: >-
     NAS2 Alameda Channel Mark "R2" Fl R 4s round to STARBOARD
   rounding: STARBOARD
   points:
     - NAS2
-- name: NAS1/NAS2
+NAS1/NAS2:
   description: >-
     NAS1 Alameda Channel Mark "G1" FL G 4s Bell round to PORT or NAS2 Alameda
     Channel Mark "R2" Fl R 4s round to STARBOARD
@@ -37,14 +37,14 @@
   points:
     - NAS1
     - NAS2
-- name: YB
+YB:
   description: >-
     Yerba Buena is a Red buoy \"2\" Fl R 2.5s approx. 0.5 nm South of Yerba Buena
     Light House
   rounding: STARBOARD
   points:
     - YB
-- name: W
+W:
   description: >-
     A set of temporary Orange inflatable marks set approximately 1 mile up of
     signal boat. This may be set in order to square the downwind leg in a cross
@@ -52,7 +52,7 @@
   rounding: offset
   points:
     - W
-- name: R
+R:
   description: >-
     A set of temporary Orange inflatable marks set approximately 1 mile up of
     signal boat. This may be set in order to square the downwind leg in a cross
@@ -60,7 +60,7 @@
   rounding: offset
   points:
     - R
-- name: GATE G
+GATE G:
   description: >-
     Two Inflatable 8 ft. orange cones set as a leeward GATE set in the vicinity
     upwind of the starting area. Enter between the two marks in the direction
@@ -70,26 +70,26 @@
   points:
     - GATE G1
     - GATE G2
-- name: AS1
+AS1:
   description: Yellow mark, approx. 0.25 nm East of BVBC
   rounding: PORT
   points:
     - AS1
-- name: SC1
+SC1:
   description: >-
     SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission Rock Terminal
   rounding: PORT
   points:
     - SC1
-- name: L
+L:
   rounding: PORT
   description: >-
     A temporary Orange leeward mark set approx. ~100 yards to weather of the Start Line.
-- name: '34'
+'34':
   rounding: PORT
   description: >-
     Red buoy “2” FL R 2.0s, approx. 0.5 nm east of Potrero Point
-- name: '33'
+'33':
   rounding: PORT
   description: >-
     Oak Inner Harbor Entrance, “4” Fl R 4s

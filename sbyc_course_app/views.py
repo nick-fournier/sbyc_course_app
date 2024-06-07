@@ -1,5 +1,3 @@
-# from django.views.generic.edit import FormView
-# from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import json
@@ -7,8 +5,6 @@ import gpxpy
 import gpxpy.gpx
 
 from .mapping import COURSE_DATA
-# from .mapping import CourseCharting, chart_course
-# from .forms import CourseForm
 from .flags import html_flag_tables
 
 

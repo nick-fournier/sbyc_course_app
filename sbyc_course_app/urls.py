@@ -1,7 +1,5 @@
 from django.urls import path
-
 from . import views
-from . import forms
 
 urlpatterns = [
     path('gpx/<int:course_number>-<str:pin>-<str:rounding>/download', views.gpx_response_download, name='gpx_download'),

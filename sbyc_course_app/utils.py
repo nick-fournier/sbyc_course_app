@@ -1,7 +1,4 @@
-
 import math
-# import haversine as hs
-# from geographiclib.geodesic import Geodesic
 
 
 def coord_str_to_dec(string):
@@ -50,16 +47,6 @@ def haversine(coord1, coord2):
     distance = R * c
     
     return distance
-
-
-# def coord_diff(coord_df, units=hs.Unit.METERS):
-#     # Distance from center point
-#     center = coord_mean(coord_df)
-
-#     if not all(coord_df.dtypes == [float, float]):
-#         coord_df = coord_df.apply(coord_str_to_dec)
-
-#     return coord_df.apply(lambda x: hs.haversine(center, tuple(x), unit=units), axis=1).max()
 
 
 def get_bearing(point_list):

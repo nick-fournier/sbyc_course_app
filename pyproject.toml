@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sbyc-course-app"
-version = "0.1.0"
+version = "2024.2.0" # <year><spring/summer><iteration>
 description = "A race course map lookup web app for SBYC Friday Night Series"
 authors = ["Nick Fournier <nichfournier@gmail.com>"]
 readme = "README.md"

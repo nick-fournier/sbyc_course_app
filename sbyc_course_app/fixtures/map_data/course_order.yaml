@@ -42,6 +42,8 @@
 6:
   marks:
     - START
+    - W
+    - R
     - SC1
     - FINISH
 7:

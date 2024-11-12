@@ -1,17 +1,17 @@
 [tool.poetry]
 name = "sbyc-course-app"
-version = "2024.2.1" # <year><spring/summer><iteration>
+version = "2024.2.2" # <year><spring/summer><iteration>
 description = "A race course map lookup web app for SBYC Friday Night Series"
 authors = ["Nick Fournier <nichfournier@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 gpxpy = "^1.6.2"
-PyYAML = "^6.0.1"
+PyYAML = "^6.0.2"
 folium = "^0.16.0"
-django-crispy-forms = "^2.1"
-django = "^5.0.6"
+django-crispy-forms = "^2.3"
+django = "^4.2"
 
 
 [build-system]

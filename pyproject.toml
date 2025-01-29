@@ -1,19 +1,23 @@
-[tool.poetry]
+[project]
 name = "sbyc-course-app"
-version = "2024.2.2" # <year><spring/summer><iteration>
-description = "A race course map lookup web app for SBYC Friday Night Series"
-authors = ["Nick Fournier <nichfournier@gmail.com>"]
+version = "0.1.0"
+description = "Add your description here"
 readme = "README.md"
+authors = [
+    { name = "nick-fournier", email = "nichfournier@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.1.5",
+    "django-crispy-forms>=2.3",
+    "folium>=0.19.4",
+    "gpxpy>=1.6.2",
+    "pyyaml>=6.0.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-gpxpy = "^1.6.2"
-PyYAML = "^6.0.2"
-folium = "^0.16.0"
-django-crispy-forms = "^2.3"
-django = "^4.2"
-
+[project.scripts]
+sbyc-course-app = "sbyc_course_app:main"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

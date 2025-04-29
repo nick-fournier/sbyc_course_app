@@ -102,17 +102,17 @@ def chart_course(course_number, map_data, **kwargs):
             else:
                 object_marks = objects[mark_name]['points']
 
-            object_coords = {k: marks[k] for k in object_marks}
+            coords = {k: marks[k] for k in object_marks}
             
             # Assert all custom coord keys are in the object_coords dict
-            assert all([k in object_coords for k in custom_coords])
-            object_coords.update(custom_coords)
+            assert all([k in coords for k in custom_coords])
+            coords.update(custom_coords)
 
             # Get effective center from remaining points (if there were more than 2)
-            coord_pairs = [(x['lat'], x['lon']) for x in object_coords.values()]
+            coord_pairs = [(x['lat'], x['lon']) for x in coords.values()]
 
             # Effective mark location (center) and precision
-            mark['precision'] = float(max([x['precision'] for x in object_coords.values()]))
+            mark['precision'] = float(max([x['precision'] for x in coords.values()]))
             mark['lat'], mark['lon'] = coord_mean(coord_pairs)
 
             # Add gate points to gates dict

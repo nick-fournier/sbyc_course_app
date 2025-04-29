@@ -9,7 +9,10 @@ def path_to_image_html(src):
     return "<img src=\"{}\" height=\"30\">".format(src)
 
 
-def dict_list_to_html_table(data, cols=[], html_classes=''):
+def dict_list_to_html_table(data, cols=None, html_classes=''):
+    if cols is None:
+        cols = []
+    
     if html_classes == '':
         table_html = '<table>\n'
     else:

@@ -1,7 +1,13 @@
 import math
+import re
 from pathlib import Path
 
 import yaml
+
+
+# A trailing (S) or (P) on a mark/object name forces STARBOARD or PORT rounding
+# for that mark in that course, e.g. '34(S)' or 'SC1(S)' in course_order.yaml.
+ROUNDING_SUFFIX = re.compile(r'\s*\(([SP])\)\s*$', re.IGNORECASE)
 
 
 def coord_str_to_dec(string):
@@ -84,8 +90,14 @@ def chart_course(course_number, map_data, **kwargs):
     gates = {}
     
     # Loop through the course and populate the attributes
-    for order, mark_name in enumerate(courses[course_number]):
-        
+    for order, raw_name in enumerate(courses[course_number]):
+
+        # A trailing (S)/(P) suffix forces STARBOARD/PORT rounding for this mark.
+        # Strip it off to look up the underlying object and to display a clean name.
+        match = ROUNDING_SUFFIX.search(raw_name)
+        override = match.group(1).upper() if match else None
+        mark_name = ROUNDING_SUFFIX.sub('', raw_name)
+
         # Populate mark data from the objects dict
         mark = {
             'name': mark_name,
@@ -128,6 +140,12 @@ def chart_course(course_number, map_data, **kwargs):
                 mark['rounding'] = 'PORT'
             
             mark.update(marks[windward_mark_name])
+
+        # Apply per-mark (S)/(P) rounding override last so it wins over the defaults
+        if override == 'S':
+            mark['rounding'] = 'STARBOARD'
+        elif override == 'P':
+            mark['rounding'] = 'PORT'
 
         # Waypoint segments
         segment_points.append([mark['lat'], mark['lon']])

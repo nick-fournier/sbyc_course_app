@@ -81,22 +81,12 @@ SC1:
   rounding: PORT
   points:
     - SC1
-SC1s:
-  description: >-
-    SC1 is a green & red buoy, \"SC\" FL G(2+1), approx. 1.0 nm ENE of Mission Rock Terminal
-  rounding: STARBOARD
-  points:
-    - SC1
 L:
   rounding: PORT
   description: >-
     A temporary Orange leeward mark set approx. ~100 yards to weather of the Start Line.
 '34':
   rounding: PORT
-  description: >-
-    Red buoy \"2\" FL R 2.0s, approx. 0.5 nm east of Potrero Point
-'34s':
-  rounding: STARBOARD
   description: >-
     Red buoy \"2\" FL R 2.0s, approx. 0.5 nm east of Potrero Point
 '33':

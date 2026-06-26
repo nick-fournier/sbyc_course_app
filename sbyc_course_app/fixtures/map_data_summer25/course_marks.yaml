@@ -1,0 +1,79 @@
+SC1:
+  lat: 37 46.533
+  lon: -122 21.949
+  precision: 0
+
+RC BOAT:
+  lat: 37 46.906
+  lon: -122 21.905
+  precision: 40
+
+T1:
+  lat: 37 46.795
+  lon: -122 21.892
+  precision: 40
+
+NAS1:
+  lat: 37 46.635
+  lon: -122 20.477
+  precision: 0
+
+NAS2:
+  lat: 37 46.451
+  lon: -122 20.461
+  precision: 0
+
+YB:
+  lat: 37 47.971
+  lon: -122 21.631
+  precision: 0
+
+W:
+  lat: 37 46.915
+  lon: -122 22.930
+  precision: 20
+
+R:
+  lat: 37 46.766
+  lon: -122 22.940
+  precision: 20
+
+GATE G1:
+  lat: 37 46.800
+  lon: -122 21.447
+  precision: 40
+
+GATE G2:
+  lat: 37 46.900
+  lon: -122 21.472
+  precision: 40
+
+AS1:
+  lat: 37 46.283
+  lon: -122 22.981
+  precision: 0
+
+'34':
+  lat: 37 45.501
+  lon: -122 22.112
+  precision: 0
+
+'33':
+  lat: 37 48.060
+  lon: -122 20.864
+  precision: 0
+
+PIER 48:
+  lat: 37 46.582
+  lon: -122 23.097
+  precision: 0
+
+PA:
+  lat: 37 46.707
+  lon: -122 23.118
+  precision: 0
+
+L:
+  lat: 37 46.589
+  lon: -122 21.367
+  precision: 40

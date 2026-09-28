@@ -1,5 +1,17 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pyyaml"]
+# ///
+"""Build the static FNS site: YAML course data -> dist/.
+
+    uv run build.py                      # current season (data/map_data)
+    uv run build.py --season map_data_summer25 --out dist
+"""
+import argparse
+import json
 import math
 import re
+import shutil
 from pathlib import Path
 
 import yaml
@@ -162,20 +174,52 @@ def chart_course(course_number, map_data, **kwargs):
     return course
 
 
-# load_static_data once for session
-MAP_DATA = {}
-for obj in ['marks', 'objects', 'order']:
-    print(f'Loading {obj} data...')
-    fpath = Path(__file__).parent / 'fixtures' / 'map_data' / f"course_{obj}.yaml"
+def load_map_data(season_dir):
+    map_data = {}
+    for obj in ['marks', 'objects', 'order']:
+        with open(season_dir / f'course_{obj}.yaml') as f:
+            map_data[obj] = yaml.safe_load(f)
 
-    with open(fpath) as f:
-        MAP_DATA[obj] = yaml.load(f, Loader=yaml.FullLoader)
-        
-    if obj == 'marks':
-        for key in MAP_DATA[obj].keys():
-            MAP_DATA[obj][key]['lat'] = coord_str_to_dec(MAP_DATA[obj][key]['lat'])
-            MAP_DATA[obj][key]['lon'] = coord_str_to_dec(MAP_DATA[obj][key]['lon'])
+    for mark in map_data['marks'].values():
+        mark['lat'] = coord_str_to_dec(mark['lat'])
+        mark['lon'] = coord_str_to_dec(mark['lon'])
 
-# Pre-compute course data
-print("Pre-computing course data...")
-COURSE_DATA = {i: chart_course(i, MAP_DATA) for i in MAP_DATA['order']}
+    return map_data
+
+
+def write_js_global(path, name, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f'window.{name} = {json.dumps(data)};\n')
+
+
+def main():
+    root = Path(__file__).parent
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--season', default='map_data', help='folder under data/')
+    parser.add_argument('--out', default=root / 'dist', type=Path)
+    args = parser.parse_args()
+
+    map_data = load_map_data(root / 'data' / args.season)
+    course_data = {i: chart_course(i, map_data) for i in map_data['order']}
+
+    with open(root / 'data' / 'flags.yaml') as f:
+        flag_data = yaml.safe_load(f)
+
+    missing = [
+        flag['flag'] for flags in flag_data.values() for flag in flags
+        if not (root / 'site' / flag['flag']).exists()
+    ]
+    if missing:
+        raise FileNotFoundError(f'flags.yaml references missing images: {missing}')
+
+    if args.out.exists():
+        shutil.rmtree(args.out)
+    shutil.copytree(root / 'site', args.out)
+    write_js_global(args.out / 'data' / 'courses.js', 'COURSES', course_data)
+    write_js_global(args.out / 'data' / 'flags.js', 'FLAGS', flag_data)
+
+    print(f'Built {len(course_data)} courses from {args.season} -> {args.out}')
+
+
+if __name__ == '__main__':
+    main()

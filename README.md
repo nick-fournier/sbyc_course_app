@@ -1,20 +1,33 @@
-# sbyc_course_app
+# SBYC FNS course charts
 
-This app provides a simple interface for courses and flags of South Beach Yacht Club's Friday Night Series.
+Course maps and signal flags for South Beach Yacht Club's Friday Night Series,
+served at https://fns.nicholasfournier.com.
 
-Quick start
------------
+It's a static site: `build.py` turns the YAML course data in `data/` into
+`dist/data/courses.js` and `dist/data/flags.js`, and copies the page from `site/`.
+The browser does everything else, including GPX export and the port/starboard swap.
 
-1. Add "sbyc_course_app" to your INSTALLED_APPS setting like this::
+## Local development
 
-    INSTALLED_APPS = [
-        ...
-        'sbyc_course_app',
-    ]
+```bash
+uv run build.py                   # or: pip install pyyaml && python build.py
+python -m http.server -d dist     # http://localhost:8000
+```
 
-2. Include the sbyc_course_app URLconf in your project urls.py like this:
-    path('sbyc_course_app/', include('sbyc_course_app.urls')),
+## Updating courses for a new season
 
-3. Start the development server with `python manage.py runserver` and visit http://127.0.0.1:8000/admin/.
+1. Copy the current season, e.g. `cp -r data/map_data data/map_data_fall26`, to keep an archive.
+2. Edit `data/map_data/course_{marks,objects,order}.yaml`. A trailing `(S)` or `(P)` on a
+   mark in `course_order.yaml` forces starboard or port rounding for that mark.
+3. Run `uv run build.py`. It fails loudly on bad data, and so does CI.
+4. Push to `main`. CI builds `nichfournier/fns:latest`. Then deploy on razz:
+   `docker compose pull fns && docker compose up -d fns` in `clubhouse-server/razz`.
 
-No need to run migrations, there is no database for this app.
+## Layout
+
+| Path | What |
+|---|---|
+| `build.py` | YAML -> JS data files; copies `site/` into `dist/` |
+| `data/` | course YAML per season (`map_data` is the live one) and `flags.yaml` |
+| `site/` | `index.html` (chart), `flags.html`, CSS, JS, flag images |
+| `Dockerfile` | builds `dist/`, then serves it with nginx |
